@@ -3,662 +3,1773 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Digital Deterrence Simulator — Software Over Steel</title>
+  <title>Technology & Geopolitics Simulation | The Geopolitics of Technology</title>
   <style>
-    :root{
-      --bg:#f6f7fb; --card:#ffffff; --ink:#111827; --muted:#6b7280;
-      --accent:#2563eb; --warn:#f59e0b; --bad:#dc2626; --good:#10b981;
-      --line:#e5e7eb;
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --accent: #3b82f6;
+      --accent-light: #dbeafe;
+      --capability: #8b5cf6;
+      --control: #f59e0b;
+      --legitimacy: #10b981;
+      --danger: #ef4444;
+      --line: #e2e8f0;
+      --highlight: #fef3c7;
     }
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);}
-    header{background:#0f172a;color:#fff;padding:18px 20px;}
-    header h1{margin:0;font-size:18px;font-weight:650;}
-    header p{margin:6px 0 0;color:#cbd5e1;font-size:13px;max-width:980px;line-height:1.35;}
-    main{max-width:980px;margin:16px auto;padding:0 14px 24px;}
-    .row{display:grid;grid-template-columns:1.2fr 0.8fr;gap:12px;}
-    @media (max-width: 900px){ .row{grid-template-columns:1fr;} }
-    .card{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.04);padding:14px;}
-    .title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px;}
-    .title h2{margin:0;font-size:15px;}
-    .title .meta{font-size:12px;color:var(--muted);}
-    .kpiGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
-    .kpi{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fbfbfd;}
-    .kpi .k{font-size:12px;color:var(--muted);margin-bottom:6px;}
-    .kpi .v{display:flex;align-items:center;gap:10px;}
-    .bar{flex:1;height:10px;background:#e5e7eb;border-radius:999px;position:relative;overflow:hidden;}
-    .fill{position:absolute;left:0;top:0;height:100%;width:0%;border-radius:999px;}
-    .n{min-width:40px;text-align:right;font-variant-numeric:tabular-nums;font-weight:650;}
-    .eventBox{border-left:4px solid var(--accent);background:#f8fafc;padding:10px 10px;border-radius:10px;border:1px solid var(--line);line-height:1.45;}
-    .eventBox p{margin:0;font-size:13px;}
-    .eventBox .tag{display:inline-block;font-size:11px;font-weight:650;padding:2px 8px;border-radius:999px;background:#e0e7ff;color:#1e40af;margin-bottom:8px;}
-    .controls{margin-top:10px;}
-    .budget{display:flex;align-items:center;justify-content:space-between;margin:8px 0 6px;}
-    .budget .left{font-size:13px;color:var(--muted);}
-    .budget .right{font-size:13px;font-weight:650;}
-    .sliderRow{border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;}
-    .sliderTop{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;}
-    .sliderTop .name{font-size:13px;font-weight:650;}
-    .sliderTop .desc{font-size:12px;color:var(--muted);flex:1;text-align:right;}
-    input[type="range"]{width:100%;}
-    .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;flex-wrap:wrap;}
-    button{border:0;border-radius:10px;padding:10px 12px;font-weight:650;cursor:pointer;font-size:13px;}
-    .btnPrimary{background:var(--accent);color:#fff;}
-    .btnPrimary:disabled{background:#93c5fd;cursor:not-allowed;}
-    .btnGhost{background:#eef2ff;color:#1e40af;}
-    .btnDanger{background:#fee2e2;color:#991b1b;}
-    .small{font-size:12px;color:var(--muted);line-height:1.4;}
-    .outcome{border:1px dashed var(--line);border-radius:10px;padding:10px;background:#ffffff;margin-top:10px;}
-    .outcome h3{margin:0 0 6px;font-size:13px;}
-    .outcome ul{margin:0;padding-left:18px;font-size:13px;line-height:1.4;}
-    .pill{display:inline-block;font-size:11px;font-weight:650;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;}
-    table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;}
-    th,td{border:1px solid var(--line);padding:8px;vertical-align:top;}
-    th{background:#f3f4f6;text-align:left;}
-    .hl{background:#fff7ed;}
-    .hidden{display:none;}
-    .footerNote{margin-top:10px;font-size:12px;color:var(--muted);}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: #fff;
+      padding: 24px 24px 20px;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    header .course-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    header .subtitle {
+      margin: 8px 0 0;
+      color: #cbd5e1;
+      font-size: 14px;
+      max-width: 800px;
+    }
+
+    header .instructor {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      gap: 16px;
+    }
+
+    .card-header h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .card-header .meta {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .framework-legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 12px 16px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .framework-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .framework-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .framework-dot.capability { background: var(--capability); }
+    .framework-dot.control { background: var(--control); }
+    .framework-dot.legitimacy { background: var(--legitimacy); }
+
+    /* Navigation Tabs */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px 16px;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab:hover { color: var(--ink); }
+    .tab.active {
+      background: var(--card);
+      color: var(--ink);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* State Comparison Grid */
+    .states-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .state-card {
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .state-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    }
+
+    .state-card.selected {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .state-card .flag {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .state-card h3 {
+      margin: 0 0 4px;
+      font-size: 16px;
+    }
+
+    .state-card .region {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .indicator-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .indicator-label {
+      font-size: 12px;
+      width: 80px;
+      color: var(--muted);
+    }
+
+    .indicator-bar {
+      flex: 1;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .indicator-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    .indicator-fill.capability { background: var(--capability); }
+    .indicator-fill.control { background: var(--control); }
+    .indicator-fill.legitimacy { background: var(--legitimacy); }
+
+    .indicator-value {
+      font-size: 12px;
+      font-weight: 600;
+      width: 32px;
+      text-align: right;
+    }
+
+    /* Scenario Panel */
+    .scenario-box {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .scenario-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--accent);
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .scenario-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+
+    .scenario-context {
+      font-size: 14px;
+      color: var(--ink);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .scenario-stakes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stake-item {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .stake-item.capability { border-left: 3px solid var(--capability); }
+    .stake-item.control { border-left: 3px solid var(--control); }
+    .stake-item.legitimacy { border-left: 3px solid var(--legitimacy); }
+
+    .stake-item h4 {
+      margin: 0 0 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stake-item.capability h4 { color: var(--capability); }
+    .stake-item.control h4 { color: var(--control); }
+    .stake-item.legitimacy h4 { color: var(--legitimacy); }
+
+    .stake-item p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Decision Options */
+    .options-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .option-card {
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-card:hover {
+      border-color: var(--accent);
+      background: #fafafa;
+    }
+
+    .option-card.selected {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .option-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .option-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .option-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 4px 0;
+    }
+
+    .option-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .option-impacts {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .impact-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .impact-chip.positive { background: #dcfce7; color: #166534; }
+    .impact-chip.negative { background: #fee2e2; color: #991b1b; }
+    .impact-chip.neutral { background: #f1f5f9; color: #475569; }
+
+    /* Outcome Panel */
+    .outcome-panel {
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    .outcome-panel h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      color: #92400e;
+    }
+
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .outcome-item {
+      text-align: center;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+    }
+
+    .outcome-item .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .outcome-item.capability .label { color: var(--capability); }
+    .outcome-item.control .label { color: var(--control); }
+    .outcome-item.legitimacy .label { color: var(--legitimacy); }
+
+    .outcome-item .change {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .outcome-item .change.positive { color: #16a34a; }
+    .outcome-item .change.negative { color: #dc2626; }
+
+    .outcome-narrative {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #78350f;
+    }
+
+    .outcome-narrative ul {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+
+    .outcome-narrative li {
+      margin: 6px 0;
+    }
+
+    /* Buttons */
+    .btn {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover { background: #2563eb; }
+    .btn-primary:disabled {
+      background: #93c5fd;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--ink);
+    }
+
+    .btn-secondary:hover { background: #e2e8f0; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Progress Tracker */
+    .progress-bar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+
+    .progress-step {
+      flex: 1;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 3px;
+    }
+
+    .progress-step.completed { background: var(--accent); }
+    .progress-step.current { background: #93c5fd; }
+
+    /* Summary Table */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 16px;
+    }
+
+    .summary-table th,
+    .summary-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summary-table th {
+      background: #f8fafc;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+
+    .summary-table tr:hover td {
+      background: #fafafa;
+    }
+
+    /* Debrief Section */
+    .debrief-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .debrief-card {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .debrief-card h4 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .debrief-card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .debrief-card li {
+      margin: 8px 0;
+    }
+
+    /* Comparison View */
+    .comparison-header {
+      display: grid;
+      grid-template-columns: 200px repeat(3, 1fr);
+      gap: 12px;
+      padding: 12px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 200px repeat(3, 1fr);
+      gap: 12px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .comparison-row:hover {
+      background: #fafafa;
+    }
+
+    .comparison-row .metric {
+      font-weight: 500;
+    }
+
+    /* Hidden utility */
+    .hidden { display: none !important; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .scenario-stakes { grid-template-columns: 1fr; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .framework-legend { flex-direction: column; gap: 8px; }
+      .comparison-header,
+      .comparison-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    /* State profile detail */
+    .state-profile {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .state-profile { grid-template-columns: 1fr; }
+    }
+
+    .profile-section h4 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .profile-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .profile-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .profile-list li:last-child {
+      border-bottom: none;
+    }
+
+    .profile-value {
+      font-weight: 600;
+    }
+
+    /* Intro styles */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+      .intro-grid { grid-template-columns: 1fr; }
+    }
+
+    .intro-card {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--line);
+    }
+
+    .intro-card h3 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .intro-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .learning-objectives {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .learning-objectives h4 {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: var(--accent);
+    }
+
+    .learning-objectives ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+    }
+
+    .learning-objectives li {
+      margin: 6px 0;
+    }
   </style>
 </head>
 <body>
 <header>
-  <h1>Digital Deterrence Simulator: Can Software Substitute for Strategic Depth?</h1>
-  <p>
-    You are the national security duty team of a small, globally connected state with limited manpower and strategic depth.
-    Each turn you allocate scarce resources across AI-ISR, HUMINT, Alliances, and Conventional Readiness.
-    Your choices shape warning quality, resilience, deterrence posture, escalation risk, and reputation.
+  <div class="course-tag">Georgetown University Qatar</div>
+  <h1>Technology & Geopolitics: A Structured Simulation</h1>
+  <p class="subtitle">
+    Explore how states, firms, and international bodies compete and cooperate in the digital era.
+    Analyse technological power through <strong>Capability</strong>, <strong>Control</strong>, and <strong>Legitimacy</strong>.
   </p>
+  <p class="instructor">The Geopolitics of Technology | Dr. Muhanad Seloom</p>
 </header>
 
 <main>
-  <section id="intro" class="card">
-    <div class="title">
-      <h2>How to play</h2>
-      <div class="meta">10–12 minutes</div>
+  <!-- Framework Legend -->
+  <div class="framework-legend">
+    <div class="framework-item">
+      <div class="framework-dot capability"></div>
+      <span><strong>Capability</strong> &mdash; technical capacity, infrastructure, innovation</span>
     </div>
-    <p class="small">
-      Each turn you have <span class="mono">100</span> budget points. Adjust sliders so the total equals 100, then click <b>Commit Allocation</b>.
-      After committing, you will see outcomes and proceed to the next turn. At the end, export your run as CSV.
+    <div class="framework-item">
+      <div class="framework-dot control"></div>
+      <span><strong>Control</strong> &mdash; governance, regulation, institutional power</span>
+    </div>
+    <div class="framework-item">
+      <div class="framework-dot legitimacy"></div>
+      <span><strong>Legitimacy</strong> &mdash; authority, norms, international standing</span>
+    </div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="tabs">
+    <button class="tab active" data-tab="intro">Introduction</button>
+    <button class="tab" data-tab="compare">Compare States</button>
+    <button class="tab" data-tab="scenario">Decision Scenario</button>
+    <button class="tab" data-tab="debrief">Debrief</button>
+  </div>
+
+  <!-- INTRO SECTION -->
+  <section id="intro" class="card">
+    <div class="card-header">
+      <h2>About This Simulation</h2>
+      <div class="meta">15-20 minutes</div>
+    </div>
+
+    <p style="font-size: 14px; margin-bottom: 16px;">
+      This simulation invites you to analyse technology not as a neutral tool, but as a <strong>political object</strong>
+      governed through institutions, markets, and norms. You will compare how different states exercise technological
+      power and navigate a decision scenario that reveals the tensions between capability, control, and legitimacy.
     </p>
+
+    <div class="intro-grid">
+      <div class="intro-card">
+        <h3><span style="color: var(--capability);">1.</span> Compare States</h3>
+        <p>
+          Examine six states from the Global North and South. Each has a distinct technological profile shaped by
+          R&D investment, digital infrastructure, regulatory frameworks, and international positioning. Use the
+          three-lens framework to analyse how technological power manifests differently across contexts.
+        </p>
+      </div>
+      <div class="intro-card">
+        <h3><span style="color: var(--control);">2.</span> Navigate a Decision</h3>
+        <p>
+          Take on the role of a state's technology policy team facing a critical decision. Each option involves
+          trade-offs between building capability, maintaining control, and preserving legitimacy. Your choices
+          reveal how institutions govern access and authorise action.
+        </p>
+      </div>
+      <div class="intro-card">
+        <h3><span style="color: var(--legitimacy);">3.</span> Analyse Outcomes</h3>
+        <p>
+          See how your decisions affect your state's position across all three dimensions. Discover why
+          technological capability does not translate uniformly into political influence, and how institutional
+          constraints shape what actions appear legitimate.
+        </p>
+      </div>
+      <div class="intro-card">
+        <h3><span style="color: var(--muted);">4.</span> Reflect & Debrief</h3>
+        <p>
+          Engage with structured reflection prompts aligned with the course's learning objectives. Consider how
+          different states would face the same scenario differently, and what this reveals about power, authority,
+          and interdependence in contemporary global politics.
+        </p>
+      </div>
+    </div>
+
+    <div class="learning-objectives">
+      <h4>Learning Objectives</h4>
+      <ul>
+        <li>Analyse technology as a source of power, constraint, and political authority</li>
+        <li>Compare how different states exercise technological power across regions</li>
+        <li>Apply qualitative and quantitative indicators to assess technological leverage</li>
+        <li>Critically evaluate claims about dominance, dependence, and autonomy</li>
+      </ul>
+    </div>
+
     <div class="actions">
-      <button class="btnPrimary" id="startBtn">Start</button>
+      <button class="btn btn-primary" id="startBtn">Begin Simulation</button>
     </div>
   </section>
 
-  <section id="sim" class="row hidden">
-    <div class="card">
-      <div class="title">
-        <h2 id="turnTitle">Turn</h2>
-        <div class="meta" id="turnMeta"></div>
-      </div>
+  <!-- COMPARE STATES SECTION -->
+  <section id="compare" class="card hidden">
+    <div class="card-header">
+      <h2>State Profiles: Technological Leverage in Comparative Perspective</h2>
+      <div class="meta">Select a state to examine its profile</div>
+    </div>
 
-      <div class="eventBox" id="eventBox">
-        <div class="tag" id="eventTag">Scenario</div>
-        <p id="eventText"></p>
-      </div>
+    <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">
+      Each state represents a different configuration of technological power. Compare indicators across
+      capability (technical capacity), control (governance reach), and legitimacy (normative authority).
+    </p>
 
-      <div class="controls">
-        <div class="budget">
-          <div class="left">Budget remaining</div>
-          <div class="right"><span id="remain">0</span> / 100</div>
-        </div>
+    <div class="states-grid" id="statesGrid">
+      <!-- States populated by JS -->
+    </div>
 
-        <div class="sliderRow">
-          <div class="sliderTop">
-            <div class="name">AI-ISR</div>
-            <div class="desc">Sensors, fusion, automation, counter-UAS analytics</div>
+    <!-- State Detail Panel -->
+    <div id="stateDetail" class="hidden" style="margin-top: 20px;">
+      <div class="scenario-box">
+        <div class="scenario-tag" id="detailStateName">State</div>
+        <p class="scenario-context" id="detailStateDesc"></p>
+
+        <div class="state-profile">
+          <div class="profile-section">
+            <h4>Capability Indicators</h4>
+            <ul class="profile-list" id="capabilityList"></ul>
           </div>
-          <input type="range" min="0" max="100" value="25" id="ai" />
-          <div class="small">Allocation: <b><span id="aiVal">25</span></b></div>
-        </div>
-
-        <div class="sliderRow">
-          <div class="sliderTop">
-            <div class="name">HUMINT / Local Networks</div>
-            <div class="desc">Sources, access, language, field presence</div>
+          <div class="profile-section">
+            <h4>Control Indicators</h4>
+            <ul class="profile-list" id="controlList"></ul>
           </div>
-          <input type="range" min="0" max="100" value="25" id="hum" />
-          <div class="small">Allocation: <b><span id="humVal">25</span></b></div>
-        </div>
-
-        <div class="sliderRow">
-          <div class="sliderTop">
-            <div class="name">Alliances / Liaison</div>
-            <div class="desc">Sharing, basing, joint warning, political cover</div>
+          <div class="profile-section">
+            <h4>Legitimacy Indicators</h4>
+            <ul class="profile-list" id="legitimacyList"></ul>
           </div>
-          <input type="range" min="0" max="100" value="25" id="ally" />
-          <div class="small">Allocation: <b><span id="allyVal">25</span></b></div>
-        </div>
-
-        <div class="sliderRow">
-          <div class="sliderTop">
-            <div class="name">Conventional Readiness</div>
-            <div class="desc">Patrols, air defence readiness, manpower tempo</div>
+          <div class="profile-section">
+            <h4>Key Characteristics</h4>
+            <ul class="profile-list" id="characteristicsList"></ul>
           </div>
-          <input type="range" min="0" max="100" value="25" id="conv" />
-          <div class="small">Allocation: <b><span id="convVal">25</span></b></div>
-        </div>
-
-        <div class="actions">
-          <button class="btnGhost" id="autoBalanceBtn" title="Auto-balance to 100">Auto-balance</button>
-          <button class="btnPrimary" id="commitBtn" disabled>Commit Allocation</button>
-          <button class="btnDanger" id="resetBtn" title="Reset to 25/25/25/25">Reset</button>
-        </div>
-
-        <div class="outcome hidden" id="outcomeBox">
-          <h3>Outcome this turn</h3>
-          <ul id="outcomeList"></ul>
-          <div class="actions">
-            <button class="btnPrimary" id="nextBtn">Next turn</button>
-          </div>
-        </div>
-
-        <div class="footerNote">
-          Instructor note: This is a stylised simulation designed to surface trade-offs, substitution limits, and second-order effects.
         </div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="title">
-        <h2>System status</h2>
-        <div class="meta"><span class="pill" id="modePill">Live</span></div>
+    <div class="actions">
+      <button class="btn btn-secondary" id="compareAllBtn">View Comparison Table</button>
+      <button class="btn btn-primary" id="toScenarioBtn">Proceed to Decision Scenario</button>
+    </div>
+
+    <!-- Comparison Table Modal -->
+    <div id="comparisonTable" class="hidden" style="margin-top: 20px;">
+      <h3 style="font-size: 15px; margin-bottom: 12px;">Comparative Indicators</h3>
+      <div class="comparison-header">
+        <div>State</div>
+        <div style="color: var(--capability);">Capability</div>
+        <div style="color: var(--control);">Control</div>
+        <div style="color: var(--legitimacy);">Legitimacy</div>
+      </div>
+      <div id="comparisonRows"></div>
+    </div>
+  </section>
+
+  <!-- SCENARIO SECTION -->
+  <section id="scenario" class="card hidden">
+    <div class="card-header">
+      <h2>Decision Scenario</h2>
+      <div class="meta" id="scenarioMeta">Scenario 1 of 3</div>
+    </div>
+
+    <div class="progress-bar" id="progressBar">
+      <div class="progress-step current"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+    </div>
+
+    <!-- State Selection for Scenario -->
+    <div id="stateSelectPrompt" style="margin-bottom: 16px;">
+      <p style="font-size: 14px; margin-bottom: 12px;">
+        <strong>Select your state:</strong> Choose which state's perspective you will adopt for this scenario.
+      </p>
+      <div class="states-grid" id="scenarioStateSelect" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+        <!-- Mini state cards populated by JS -->
+      </div>
+    </div>
+
+    <!-- Scenario Content -->
+    <div id="scenarioContent" class="hidden">
+      <div class="scenario-box">
+        <div class="scenario-tag" id="scenarioTag">Scenario</div>
+        <h3 class="scenario-title" id="scenarioTitle"></h3>
+        <p class="scenario-context" id="scenarioContext"></p>
+
+        <div class="scenario-stakes">
+          <div class="stake-item capability">
+            <h4>Capability at Stake</h4>
+            <p id="stakeCapability"></p>
+          </div>
+          <div class="stake-item control">
+            <h4>Control at Stake</h4>
+            <p id="stakeControl"></p>
+          </div>
+          <div class="stake-item legitimacy">
+            <h4>Legitimacy at Stake</h4>
+            <p id="stakeLegitimacy"></p>
+          </div>
+        </div>
       </div>
 
-      <div class="kpiGrid">
-        <div class="kpi">
-          <div class="k">Deterrence posture</div>
-          <div class="v">
-            <div class="bar"><div class="fill" id="detFill"></div></div>
-            <div class="n" id="detN">50</div>
-          </div>
-        </div>
-        <div class="kpi">
-          <div class="k">Warning quality</div>
-          <div class="v">
-            <div class="bar"><div class="fill" id="warnFill"></div></div>
-            <div class="n" id="warnN">50</div>
-          </div>
-        </div>
-        <div class="kpi">
-          <div class="k">Resilience</div>
-          <div class="v">
-            <div class="bar"><div class="fill" id="resFill"></div></div>
-            <div class="n" id="resN">50</div>
-          </div>
-        </div>
-        <div class="kpi">
-          <div class="k">Escalation risk</div>
-          <div class="v">
-            <div class="bar"><div class="fill" id="escFill"></div></div>
-            <div class="n" id="escN">30</div>
-          </div>
-        </div>
-        <div class="kpi" style="grid-column:1 / -1;">
-          <div class="k">Reputation / legitimacy</div>
-          <div class="v">
-            <div class="bar"><div class="fill" id="repFill"></div></div>
-            <div class="n" id="repN">60</div>
-          </div>
-        </div>
+      <h3 style="font-size: 15px; margin: 20px 0 12px;">Your Options</h3>
+      <div class="options-grid" id="optionsGrid">
+        <!-- Options populated by JS -->
       </div>
 
-      <div class="outcome" style="margin-top:12px;">
-        <h3>Interpretation cues</h3>
+      <div class="actions">
+        <button class="btn btn-primary" id="commitDecisionBtn" disabled>Commit Decision</button>
+      </div>
+
+      <!-- Outcome Panel -->
+      <div id="outcomePanel" class="outcome-panel hidden">
+        <h3>Outcome Analysis</h3>
+        <div class="outcome-grid">
+          <div class="outcome-item capability">
+            <div class="label">Capability</div>
+            <div class="change" id="outcomeCapability">+0</div>
+          </div>
+          <div class="outcome-item control">
+            <div class="label">Control</div>
+            <div class="change" id="outcomeControl">+0</div>
+          </div>
+          <div class="outcome-item legitimacy">
+            <div class="label">Legitimacy</div>
+            <div class="change" id="outcomeLegitimacy">+0</div>
+          </div>
+        </div>
+        <div class="outcome-narrative" id="outcomeNarrative"></div>
+        <div class="actions">
+          <button class="btn btn-primary" id="nextScenarioBtn">Next Scenario</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEBRIEF SECTION -->
+  <section id="debrief" class="card hidden">
+    <div class="card-header">
+      <h2>Simulation Debrief</h2>
+      <div class="meta" id="debriefMeta">Session Complete</div>
+    </div>
+
+    <div id="debriefSummary">
+      <h3 style="font-size: 15px; margin-bottom: 12px;">Your Decision Summary</h3>
+      <table class="summary-table" id="summaryTable">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Your State</th>
+            <th>Decision</th>
+            <th style="color: var(--capability);">Cap.</th>
+            <th style="color: var(--control);">Ctrl.</th>
+            <th style="color: var(--legitimacy);">Leg.</th>
+          </tr>
+        </thead>
+        <tbody id="summaryBody"></tbody>
+      </table>
+
+      <div style="margin-top: 20px; padding: 16px; background: #f1f5f9; border-radius: 8px;">
+        <h4 style="margin: 0 0 8px; font-size: 14px;">Final Position</h4>
+        <p style="margin: 0; font-size: 14px;" id="finalPosition"></p>
+      </div>
+    </div>
+
+    <div class="debrief-grid">
+      <div class="debrief-card">
+        <h4 style="color: var(--capability);">On Capability</h4>
         <ul>
-          <li><b>High AI-ISR</b> raises warning, but can create brittleness under deception and overload.</li>
-          <li><b>High HUMINT</b> improves intent attribution and reduces surprise, but is slow and costly.</li>
-          <li><b>High alliances</b> boosts strategic cover and sharing, but may constrain autonomy and invite blowback.</li>
-          <li><b>High conventional readiness</b> supports visible deterrence, but increases escalation and fiscal strain.</li>
+          <li>Where did technical capacity translate into political influence?</li>
+          <li>What constraints limited the exercise of technological power?</li>
+          <li>How did infrastructure and innovation interact with governance?</li>
+        </ul>
+      </div>
+      <div class="debrief-card">
+        <h4 style="color: var(--control);">On Control</h4>
+        <ul>
+          <li>How did institutional frameworks shape available options?</li>
+          <li>Where did regulatory power substitute for technical capability?</li>
+          <li>What role did alliances and dependencies play?</li>
+        </ul>
+      </div>
+      <div class="debrief-card">
+        <h4 style="color: var(--legitimacy);">On Legitimacy</h4>
+        <ul>
+          <li>Which actions appeared legitimate and to whom?</li>
+          <li>How did domestic and international audiences differ?</li>
+          <li>What normative claims justified the exercise of power?</li>
+        </ul>
+      </div>
+      <div class="debrief-card">
+        <h4>Comparative Questions</h4>
+        <ul>
+          <li>How would a different state have faced this scenario?</li>
+          <li>What does uneven leverage reveal about global tech governance?</li>
+          <li>Why doesn't capability alone determine outcomes?</li>
         </ul>
       </div>
     </div>
-  </section>
-
-  <section id="summary" class="card hidden">
-    <div class="title">
-      <h2>Run summary</h2>
-      <div class="meta" id="finalMeta"></div>
-    </div>
-    <p class="small" id="finalText"></p>
 
     <div class="actions">
-      <button class="btnPrimary" id="downloadBtn">Download CSV</button>
-      <button class="btnGhost" id="restartBtn">Restart</button>
-    </div>
-
-    <div id="tableWrap"></div>
-
-    <div class="outcome" style="margin-top:12px;">
-      <h3>Debrief prompts</h3>
-      <ul>
-        <li>Where did “software” clearly substitute for “steel,” and where did it fail?</li>
-        <li>Which investments reduced escalation risk without collapsing deterrence?</li>
-        <li>Did alliances function as capability, constraint, or both?</li>
-        <li>Which turn produced the most “strategic regret,” and why?</li>
-      </ul>
+      <button class="btn btn-secondary" id="downloadResultsBtn">Download Results (CSV)</button>
+      <button class="btn btn-ghost" id="restartBtn">Restart Simulation</button>
     </div>
   </section>
 </main>
 
 <script>
-  // ---------- Scenario design ----------
-  // Each turn defines: stressors, what works best, and what creates second-order costs.
-  const TURNS = [
-    {
-      id: 1,
-      tag: "Baseline posture",
-      text: "Routine day. Regional tensions are present but stable. Your challenge is to choose a sustainable posture that preserves readiness without provoking escalation.",
-      stress: { threat: 10, cyber: 10, ambiguity: 10, political: 10 }
-    },
-    {
-      id: 2,
-      tag: "Maritime ambiguity",
-      text: "Unmarked small craft cluster near an offshore energy asset. Signals are noisy; intent is unclear. A false alarm would be politically costly.",
-      stress: { threat: 25, cyber: 10, ambiguity: 30, political: 20 }
-    },
-    {
-      id: 3,
-      tag: "Drone harassment",
-      text: "Low-cost drones appear intermittently near a sensitive site. Attribution is uncertain. Public expects visible response, but escalation risks are real.",
-      stress: { threat: 35, cyber: 10, ambiguity: 20, political: 25 }
-    },
-    {
-      id: 4,
-      tag: "Cyber intrusion",
-      text: "A spearphishing wave targets government and energy firms. You suspect a state-linked actor. Operational disruption is limited, but confidence is high.",
-      stress: { threat: 15, cyber: 40, ambiguity: 15, political: 20 }
-    },
-    {
-      id: 5,
-      tag: "Disinformation burst",
-      text: "A coordinated online campaign claims your state is enabling foreign operations. The story is spreading internationally. Trust and reputation are at stake.",
-      stress: { threat: 10, cyber: 25, ambiguity: 20, political: 45 }
-    },
-    {
-      id: 6,
-      tag: "Alliance pressure",
-      text: "A major partner requests expanded access and data sharing in exchange for enhanced early warning. Domestic actors worry about sovereignty and dependency.",
-      stress: { threat: 20, cyber: 15, ambiguity: 15, political: 45 }
-    },
-    {
-      id: 7,
-      tag: "Deception and clutter",
-      text: "A pilgrimage / commercial surge floods maritime traffic. This is exactly when an adversary might hide a probe. Sensors are saturated; comms are intermittent.",
-      stress: { threat: 30, cyber: 15, ambiguity: 45, political: 20 }
-    },
-    {
-      id: 8,
-      tag: "Crisis peak",
-      text: "A multi-domain incident: drones, cyber probing, and ambiguous naval movement. You must deter without triggering a spiral. Investors are watching.",
-      stress: { threat: 45, cyber: 25, ambiguity: 30, political: 30 }
-    }
-  ];
+// ============ DATA ============
 
-  // ---------- State ----------
-  let idx = 0;
-  let locked = false;
+const STATES = [
+  {
+    id: 'usa',
+    name: 'United States',
+    flag: '🇺🇸',
+    region: 'Global North',
+    description: 'The United States possesses unparalleled technological capability through its dominant tech firms, research universities, and innovation ecosystem. Control operates primarily through private sector dominance and alliance networks rather than direct state regulation. Legitimacy is contested: domestic debates over Big Tech power and international concerns about surveillance and extraterritorial reach complicate its normative authority.',
+    capability: 92,
+    control: 78,
+    legitimacy: 65,
+    indicators: {
+      capability: [
+        { name: 'R&D Spending (% GDP)', value: '3.5%' },
+        { name: 'Global Tech Firms HQ', value: '7 of top 10' },
+        { name: 'AI Research Output', value: 'Highest' },
+        { name: 'Cloud Infrastructure', value: 'Dominant' }
+      ],
+      control: [
+        { name: 'Platform Governance', value: 'Firm-led' },
+        { name: 'Data Regulation', value: 'Fragmented' },
+        { name: 'Export Controls', value: 'Extensive' },
+        { name: 'Alliance Networks', value: 'Five Eyes+' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Trust', value: 'Contested' },
+        { name: 'International Standing', value: 'Mixed' },
+        { name: 'Multilateral Engagement', value: 'Selective' },
+        { name: 'Normative Claims', value: 'Innovation/Freedom' }
+      ]
+    },
+    characteristics: [
+      'Platform power concentrated in private firms',
+      'Extraterritorial regulatory reach via market access',
+      'Innovation ecosystem advantage',
+      'Alliance dependencies create leverage'
+    ]
+  },
+  {
+    id: 'china',
+    name: 'China',
+    flag: '🇨🇳',
+    region: 'Global North/South Bridge',
+    description: 'China has rapidly built technological capability through state-directed investment, indigenous innovation policies, and scale advantages. Control is highly centralised through party-state institutions that govern data, platforms, and firms. Legitimacy operates differently across audiences: strong domestic performance legitimacy but significant international concerns about surveillance, standards, and geopolitical ambitions.',
+    capability: 88,
+    control: 95,
+    legitimacy: 45,
+    indicators: {
+      capability: [
+        { name: 'R&D Spending (% GDP)', value: '2.4%' },
+        { name: 'Manufacturing Scale', value: 'Dominant' },
+        { name: '5G/6G Development', value: 'Leading' },
+        { name: 'AI Applications', value: 'Extensive' }
+      ],
+      control: [
+        { name: 'Platform Governance', value: 'State-directed' },
+        { name: 'Data Regulation', value: 'Centralised' },
+        { name: 'Tech Firm Relations', value: 'Subordinate' },
+        { name: 'Great Firewall', value: 'Comprehensive' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Trust', value: 'Performance-based' },
+        { name: 'International Standing', value: 'Contested' },
+        { name: 'BRI Tech Provision', value: 'Expanding' },
+        { name: 'Normative Claims', value: 'Sovereignty/Development' }
+      ]
+    },
+    characteristics: [
+      'State-directed technological development',
+      'Scale advantages in manufacturing and data',
+      'Digital Silk Road extending influence',
+      'Legitimacy deficit in Western markets'
+    ]
+  },
+  {
+    id: 'eu',
+    name: 'European Union',
+    flag: '🇪🇺',
+    region: 'Global North',
+    description: 'The EU exercises technological power primarily through regulatory control rather than indigenous capability. The "Brussels Effect" extends its standards globally, but dependence on US platforms and Asian hardware limits autonomous action. Legitimacy is a core asset: the EU positions itself as a normative power promoting rights-based digital governance.',
+    capability: 62,
+    control: 85,
+    legitimacy: 82,
+    indicators: {
+      capability: [
+        { name: 'R&D Spending (% GDP)', value: '2.2%' },
+        { name: 'Platform Ownership', value: 'Limited' },
+        { name: 'Semiconductor Production', value: 'Dependent' },
+        { name: 'AI Research', value: 'Strong' }
+      ],
+      control: [
+        { name: 'GDPR Reach', value: 'Global standard' },
+        { name: 'DSA/DMA', value: 'Platform rules' },
+        { name: 'AI Act', value: 'First comprehensive' },
+        { name: 'Antitrust Action', value: 'Aggressive' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Trust', value: 'Moderate' },
+        { name: 'International Standing', value: 'High' },
+        { name: 'Standard-Setting', value: 'Influential' },
+        { name: 'Normative Claims', value: 'Rights/Privacy' }
+      ]
+    },
+    characteristics: [
+      'Regulatory power exceeds technical capability',
+      '"Brussels Effect" extends standards globally',
+      'Dependent on external platforms and hardware',
+      'Normative authority as strategic asset'
+    ]
+  },
+  {
+    id: 'india',
+    name: 'India',
+    flag: '🇮🇳',
+    region: 'Global South',
+    description: 'India combines growing technological capability with contested control mechanisms. Its massive digital public infrastructure (UPI, Aadhaar) demonstrates state capacity, while its IT services sector provides global reach. Control is evolving rapidly through data localisation and platform regulation. Legitimacy draws on democratic credentials and Global South leadership.',
+    capability: 58,
+    control: 55,
+    legitimacy: 68,
+    indicators: {
+      capability: [
+        { name: 'IT Services Export', value: '$194B' },
+        { name: 'Digital Public Infra', value: 'Advanced' },
+        { name: 'Startup Ecosystem', value: 'Growing' },
+        { name: 'Manufacturing', value: 'Emerging' }
+      ],
+      control: [
+        { name: 'Data Localisation', value: 'Expanding' },
+        { name: 'Platform Regulation', value: 'Evolving' },
+        { name: 'Digital India Stack', value: 'Comprehensive' },
+        { name: 'Tech Firm Relations', value: 'Negotiated' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Trust', value: 'Mixed' },
+        { name: 'Democratic Credentials', value: 'Significant' },
+        { name: 'Global South Voice', value: 'Prominent' },
+        { name: 'Normative Claims', value: 'Digital inclusion' }
+      ]
+    },
+    characteristics: [
+      'Scale advantage: 1.4B digital users',
+      'Digital public infrastructure model',
+      'Navigating between US and China',
+      'Democratic legitimacy as differentiator'
+    ]
+  },
+  {
+    id: 'uae',
+    name: 'UAE',
+    flag: '🇦🇪',
+    region: 'Global South / Gulf',
+    description: 'The UAE exemplifies small-state digital strategy: leveraging sovereign wealth to acquire capability, positioning as a regional tech hub, and balancing between global powers. Control is highly centralised but market-friendly. Legitimacy rests on modernisation narratives and positioning as a neutral connector between East and West.',
+    capability: 48,
+    control: 72,
+    legitimacy: 55,
+    indicators: {
+      capability: [
+        { name: 'R&D Investment', value: 'High growth' },
+        { name: 'AI National Strategy', value: 'Ambitious' },
+        { name: 'Space Programme', value: 'Active' },
+        { name: 'Indigenous Tech', value: 'Limited' }
+      ],
+      control: [
+        { name: 'Data Governance', value: 'Centralised' },
+        { name: 'Tech Procurement', value: 'Strategic' },
+        { name: 'Free Zone Model', value: 'Extensive' },
+        { name: 'Alliance Position', value: 'Multi-aligned' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Standing', value: 'High' },
+        { name: 'Regional Influence', value: 'Significant' },
+        { name: 'Global Hub Status', value: 'Growing' },
+        { name: 'Normative Claims', value: 'Modernisation' }
+      ]
+    },
+    characteristics: [
+      'Sovereign wealth enables tech acquisition',
+      'Hub strategy: connecting flows',
+      'Multi-alignment between powers',
+      'Authoritarian modernisation model'
+    ]
+  },
+  {
+    id: 'nigeria',
+    name: 'Nigeria',
+    flag: '🇳🇬',
+    region: 'Global South / Africa',
+    description: 'Nigeria represents the opportunities and constraints facing large developing states. Growing tech capability through its vibrant startup ecosystem contrasts with limited state control over digital infrastructure. Legitimacy is complicated by governance challenges but bolstered by demographic weight and cultural influence across Africa.',
+    capability: 32,
+    control: 28,
+    legitimacy: 52,
+    indicators: {
+      capability: [
+        { name: 'Tech Startup Funding', value: 'Africa\'s highest' },
+        { name: 'Digital Infrastructure', value: 'Developing' },
+        { name: 'Developer Talent', value: 'Growing' },
+        { name: 'Manufacturing', value: 'Limited' }
+      ],
+      control: [
+        { name: 'Platform Regulation', value: 'Weak' },
+        { name: 'Data Governance', value: 'Nascent' },
+        { name: 'Infrastructure Ownership', value: 'Foreign-dependent' },
+        { name: 'Policy Capacity', value: 'Constrained' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Trust', value: 'Low' },
+        { name: 'Regional Influence', value: 'Significant' },
+        { name: 'Demographic Weight', value: 'Major' },
+        { name: 'Normative Claims', value: 'Digital access' }
+      ]
+    },
+    characteristics: [
+      'Vibrant private tech ecosystem',
+      'State capacity constraints',
+      'Infrastructure dependency on external actors',
+      'Demographic dividend potential'
+    ]
+  }
+];
 
-  // System KPIs (0-100)
-  let kpi = {
-    det: 50, warn: 50, res: 50, esc: 30, rep: 60
+const SCENARIOS = [
+  {
+    id: 1,
+    tag: 'Platform Governance Crisis',
+    title: 'A Major Platform Threatens to Exit Your Market',
+    context: 'A dominant global social media platform has announced it may cease operations in your state due to new content moderation requirements. The platform has 80 million users domestically and is a key channel for commerce, news, and political discourse. Civil society groups support the regulations, while business interests warn of economic disruption. Other states are watching how you respond.',
+    stakes: {
+      capability: 'Loss of platform infrastructure affects digital commerce and communication capacity',
+      control: 'Backing down signals regulatory weakness; standing firm tests enforcement capacity',
+      legitimacy: 'Domestic audiences demand sovereignty; international observers assess rule of law'
+    },
+    options: [
+      {
+        id: 'a',
+        label: 'Option A',
+        title: 'Enforce Regulations Fully',
+        description: 'Maintain your regulatory position and allow the platform to exit if it refuses compliance. Signal that domestic law applies to all operators.',
+        impacts: [
+          { type: 'negative', text: 'Capability -10: Infrastructure gap' },
+          { type: 'positive', text: 'Control +15: Regulatory credibility' },
+          { type: 'neutral', text: 'Legitimacy +5: Sovereignty assertion' }
+        ],
+        changes: { capability: -10, control: 15, legitimacy: 5 },
+        narrative: 'The platform exits. Short-term disruption is significant as users migrate to alternatives. However, your regulatory credibility increases, and domestic competitors begin to fill the gap. International observers note your willingness to enforce sovereign rules, though some business groups criticise the economic cost.'
+      },
+      {
+        id: 'b',
+        label: 'Option B',
+        title: 'Negotiate a Compromise',
+        description: 'Engage in extended negotiations, offering implementation flexibility in exchange for partial compliance and continued service.',
+        impacts: [
+          { type: 'neutral', text: 'Capability +5: Service continuity' },
+          { type: 'negative', text: 'Control -5: Perceived weakness' },
+          { type: 'neutral', text: 'Legitimacy 0: Mixed signals' }
+        ],
+        changes: { capability: 5, control: -5, legitimacy: 0 },
+        narrative: 'Negotiations produce a face-saving compromise. The platform remains with modified practices, but both sides interpret the outcome differently. Your regulatory framework appears flexible, which may invite further challenges. Users retain access, preserving economic activity.'
+      },
+      {
+        id: 'c',
+        label: 'Option C',
+        title: 'Suspend Enforcement',
+        description: 'Quietly delay implementation of the regulations, citing need for further consultation. Allow the platform to continue operating under existing terms.',
+        impacts: [
+          { type: 'positive', text: 'Capability +10: No disruption' },
+          { type: 'negative', text: 'Control -15: Credibility loss' },
+          { type: 'negative', text: 'Legitimacy -10: Sovereignty questions' }
+        ],
+        changes: { capability: 10, control: -15, legitimacy: -10 },
+        narrative: 'The immediate crisis passes, but at significant cost. Your regulatory authority is diminished, and other platforms take note. Domestic critics argue you capitulated to corporate pressure. The underlying governance questions remain unresolved.'
+      }
+    ]
+  },
+  {
+    id: 2,
+    tag: 'AI Export Controls',
+    title: 'Allied State Requests AI Technology Transfer',
+    context: 'A close strategic partner requests access to advanced AI systems developed by your national research institutions and private sector. The technology has dual-use potential. Providing access would strengthen the alliance and generate revenue, but risks capability diffusion. A rival power is offering its own AI partnership to the requesting state.',
+    stakes: {
+      capability: 'Sharing may accelerate partner\'s capability while potentially eroding your advantage',
+      control: 'Transfer agreements require governance frameworks; monitoring compliance is difficult',
+      legitimacy: 'Alliance solidarity versus non-proliferation norms and domestic concerns'
+    },
+    options: [
+      {
+        id: 'a',
+        label: 'Option A',
+        title: 'Full Technology Partnership',
+        description: 'Agree to comprehensive AI cooperation including advanced systems, joint research, and capability building. Deepen alliance integration.',
+        impacts: [
+          { type: 'negative', text: 'Capability -5: Advantage diffusion' },
+          { type: 'positive', text: 'Control +10: Alliance framework' },
+          { type: 'positive', text: 'Legitimacy +10: Partnership trust' }
+        ],
+        changes: { capability: -5, control: 10, legitimacy: 10 },
+        narrative: 'The partnership strengthens alliance bonds significantly. Joint governance frameworks create new mechanisms for coordination. Your partner chooses your ecosystem over the rival\'s offer. However, capability diffusion begins, and maintaining technological edge requires continued innovation investment.'
+      },
+      {
+        id: 'b',
+        label: 'Option B',
+        title: 'Tiered Access with Conditions',
+        description: 'Offer access to some AI systems with strict end-use monitoring, technology safeguards, and limitations on the most sensitive capabilities.',
+        impacts: [
+          { type: 'neutral', text: 'Capability 0: Controlled sharing' },
+          { type: 'neutral', text: 'Control +5: Conditional framework' },
+          { type: 'neutral', text: 'Legitimacy +5: Balanced approach' }
+        ],
+        changes: { capability: 0, control: 5, legitimacy: 5 },
+        narrative: 'Your partner accepts the tiered arrangement, though some frustration exists about limitations. The governance framework provides oversight mechanisms. You maintain your edge in the most advanced systems while demonstrating alliance commitment.'
+      },
+      {
+        id: 'c',
+        label: 'Option C',
+        title: 'Decline the Request',
+        description: 'Refuse the technology transfer citing security concerns and non-proliferation commitments. Offer alternative cooperation in less sensitive areas.',
+        impacts: [
+          { type: 'positive', text: 'Capability +10: Advantage preserved' },
+          { type: 'negative', text: 'Control -10: Alliance strain' },
+          { type: 'negative', text: 'Legitimacy -5: Partnership damage' }
+        ],
+        changes: { capability: 10, control: -10, legitimacy: -5 },
+        narrative: 'Your technological advantage is preserved, but alliance relations suffer. Your partner, feeling rebuffed, begins exploring the rival power\'s offer more seriously. Questions arise about the reliability of your partnerships. Domestic security hawks approve, but foreign ministry officials warn of strategic costs.'
+      }
+    ]
+  },
+  {
+    id: 3,
+    tag: 'Digital Infrastructure Crisis',
+    title: 'Critical Infrastructure Vulnerable to Foreign Control',
+    context: 'An audit reveals that 70% of your state\'s telecommunications infrastructure relies on equipment from a foreign provider now subject to sanctions by a major ally. Removing this equipment would cost billions and take years. Your ally is pressuring immediate action. The equipment provider offers security guarantees and threatens legal action if excluded.',
+    stakes: {
+      capability: 'Infrastructure replacement affects network quality and digital services',
+      control: 'Dependency on foreign infrastructure limits sovereign control over critical systems',
+      legitimacy: 'Alliance obligations versus economic pragmatism and legal commitments'
+    },
+    options: [
+      {
+        id: 'a',
+        label: 'Option A',
+        title: 'Accelerated Replacement',
+        description: 'Commit to rapid infrastructure replacement despite costs. Align with ally demands and reduce dependency on the contested provider.',
+        impacts: [
+          { type: 'negative', text: 'Capability -15: Transition disruption' },
+          { type: 'positive', text: 'Control +15: Reduced dependency' },
+          { type: 'positive', text: 'Legitimacy +10: Alliance alignment' }
+        ],
+        changes: { capability: -15, control: 15, legitimacy: 10 },
+        narrative: 'The replacement programme strains budgets and causes service disruptions. However, your ally provides support and your infrastructure becomes less vulnerable to foreign leverage. The contested provider pursues legal action, creating ongoing friction. Long-term, your digital sovereignty increases.'
+      },
+      {
+        id: 'b',
+        label: 'Option B',
+        title: 'Gradual Transition',
+        description: 'Announce a multi-year phase-out plan. New installations use alternative providers while existing equipment is replaced on natural upgrade cycles.',
+        impacts: [
+          { type: 'neutral', text: 'Capability -5: Managed transition' },
+          { type: 'neutral', text: 'Control +5: Incremental improvement' },
+          { type: 'neutral', text: 'Legitimacy 0: Partial satisfaction' }
+        ],
+        changes: { capability: -5, control: 5, legitimacy: 0 },
+        narrative: 'The gradual approach limits disruption but satisfies no one fully. Your ally questions your commitment; the contested provider challenges the policy. You maintain operational capability while slowly reducing dependency. The transition creates a prolonged period of uncertainty.'
+      },
+      {
+        id: 'c',
+        label: 'Option C',
+        title: 'Maintain Current Infrastructure',
+        description: 'Resist pressure to remove existing equipment. Implement enhanced monitoring and security measures while avoiding costly replacement.',
+        impacts: [
+          { type: 'positive', text: 'Capability +5: No disruption' },
+          { type: 'negative', text: 'Control -10: Dependency remains' },
+          { type: 'negative', text: 'Legitimacy -15: Alliance damage' }
+        ],
+        changes: { capability: 5, control: -10, legitimacy: -15 },
+        narrative: 'Your networks continue operating smoothly, but alliance relations deteriorate significantly. Your ally implements information-sharing restrictions, affecting intelligence cooperation. The contested provider views this as a victory, potentially increasing your vulnerability to future leverage. Domestic critics question your strategic alignment.'
+      }
+    ]
+  }
+];
+
+// ============ STATE ============
+
+let currentTab = 'intro';
+let selectedState = null;
+let selectedScenarioState = null;
+let currentScenario = 0;
+let selectedOption = null;
+let decisionHistory = [];
+let cumulativeScores = { capability: 0, control: 0, legitimacy: 0 };
+
+// ============ DOM ELEMENTS ============
+
+const tabs = document.querySelectorAll('.tab');
+const sections = {
+  intro: document.getElementById('intro'),
+  compare: document.getElementById('compare'),
+  scenario: document.getElementById('scenario'),
+  debrief: document.getElementById('debrief')
+};
+
+// ============ FUNCTIONS ============
+
+function switchTab(tabId) {
+  currentTab = tabId;
+  tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+  Object.entries(sections).forEach(([id, el]) => {
+    el.classList.toggle('hidden', id !== tabId);
+  });
+}
+
+function renderStateCards() {
+  const grid = document.getElementById('statesGrid');
+  grid.innerHTML = STATES.map(state => `
+    <div class="state-card" data-state="${state.id}">
+      <div class="flag">${state.flag}</div>
+      <h3>${state.name}</h3>
+      <div class="region">${state.region}</div>
+      <div class="indicator-row">
+        <div class="indicator-label">Capability</div>
+        <div class="indicator-bar">
+          <div class="indicator-fill capability" style="width: ${state.capability}%"></div>
+        </div>
+        <div class="indicator-value">${state.capability}</div>
+      </div>
+      <div class="indicator-row">
+        <div class="indicator-label">Control</div>
+        <div class="indicator-bar">
+          <div class="indicator-fill control" style="width: ${state.control}%"></div>
+        </div>
+        <div class="indicator-value">${state.control}</div>
+      </div>
+      <div class="indicator-row">
+        <div class="indicator-label">Legitimacy</div>
+        <div class="indicator-bar">
+          <div class="indicator-fill legitimacy" style="width: ${state.legitimacy}%"></div>
+        </div>
+        <div class="indicator-value">${state.legitimacy}</div>
+      </div>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.state-card').forEach(card => {
+    card.addEventListener('click', () => selectState(card.dataset.state));
+  });
+}
+
+function selectState(stateId) {
+  selectedState = STATES.find(s => s.id === stateId);
+
+  document.querySelectorAll('#statesGrid .state-card').forEach(card => {
+    card.classList.toggle('selected', card.dataset.state === stateId);
+  });
+
+  const detail = document.getElementById('stateDetail');
+  detail.classList.remove('hidden');
+
+  document.getElementById('detailStateName').textContent = selectedState.name;
+  document.getElementById('detailStateDesc').textContent = selectedState.description;
+
+  const renderList = (listId, items) => {
+    document.getElementById(listId).innerHTML = items.map(item => `
+      <li><span>${item.name}</span><span class="profile-value">${item.value}</span></li>
+    `).join('');
   };
 
-  const history = []; // per turn record
+  renderList('capabilityList', selectedState.indicators.capability);
+  renderList('controlList', selectedState.indicators.control);
+  renderList('legitimacyList', selectedState.indicators.legitimacy);
 
-  // ---------- DOM ----------
-  const intro = document.getElementById("intro");
-  const sim = document.getElementById("sim");
-  const summary = document.getElementById("summary");
+  document.getElementById('characteristicsList').innerHTML = selectedState.characteristics.map(c => `
+    <li><span>${c}</span></li>
+  `).join('');
+}
 
-  const startBtn = document.getElementById("startBtn");
-  const turnTitle = document.getElementById("turnTitle");
-  const turnMeta = document.getElementById("turnMeta");
-  const eventTag = document.getElementById("eventTag");
-  const eventText = document.getElementById("eventText");
+function renderComparisonTable() {
+  const rows = document.getElementById('comparisonRows');
+  rows.innerHTML = STATES.map(state => `
+    <div class="comparison-row">
+      <div class="metric">${state.flag} ${state.name}</div>
+      <div>${state.capability}/100</div>
+      <div>${state.control}/100</div>
+      <div>${state.legitimacy}/100</div>
+    </div>
+  `).join('');
 
-  const ai = document.getElementById("ai");
-  const hum = document.getElementById("hum");
-  const ally = document.getElementById("ally");
-  const conv = document.getElementById("conv");
+  document.getElementById('comparisonTable').classList.remove('hidden');
+}
 
-  const aiVal = document.getElementById("aiVal");
-  const humVal = document.getElementById("humVal");
-  const allyVal = document.getElementById("allyVal");
-  const convVal = document.getElementById("convVal");
+function renderScenarioStateSelect() {
+  const grid = document.getElementById('scenarioStateSelect');
+  grid.innerHTML = STATES.map(state => `
+    <div class="state-card" data-state="${state.id}" style="padding: 12px;">
+      <div class="flag" style="font-size: 24px; margin-bottom: 4px;">${state.flag}</div>
+      <h3 style="font-size: 14px; margin: 0;">${state.name}</h3>
+    </div>
+  `).join('');
 
-  const remain = document.getElementById("remain");
-  const commitBtn = document.getElementById("commitBtn");
-  const autoBalanceBtn = document.getElementById("autoBalanceBtn");
-  const resetBtn = document.getElementById("resetBtn");
-
-  const outcomeBox = document.getElementById("outcomeBox");
-  const outcomeList = document.getElementById("outcomeList");
-  const nextBtn = document.getElementById("nextBtn");
-
-  const detFill = document.getElementById("detFill");
-  const warnFill = document.getElementById("warnFill");
-  const resFill = document.getElementById("resFill");
-  const escFill = document.getElementById("escFill");
-  const repFill = document.getElementById("repFill");
-
-  const detN = document.getElementById("detN");
-  const warnN = document.getElementById("warnN");
-  const resN = document.getElementById("resN");
-  const escN = document.getElementById("escN");
-  const repN = document.getElementById("repN");
-
-  const finalMeta = document.getElementById("finalMeta");
-  const finalText = document.getElementById("finalText");
-  const tableWrap = document.getElementById("tableWrap");
-  const downloadBtn = document.getElementById("downloadBtn");
-  const restartBtn = document.getElementById("restartBtn");
-  const modePill = document.getElementById("modePill");
-
-  // ---------- Helpers ----------
-  const clamp = (x, a=0, b=100) => Math.max(a, Math.min(b, x));
-  const sumAlloc = () => (+ai.value) + (+hum.value) + (+ally.value) + (+conv.value);
-
-  function colorFor(value, invert=false){
-    // returns a simple traffic-light color (no custom palette required by user, but basic is fine)
-    // invert=true means high is bad (escalation risk)
-    if(invert){
-      if(value < 35) return "#10b981";
-      if(value < 65) return "#f59e0b";
-      return "#dc2626";
-    }else{
-      if(value < 35) return "#dc2626";
-      if(value < 65) return "#f59e0b";
-      return "#10b981";
-    }
-  }
-
-  function renderKPI(){
-    const set = (fillEl, numEl, v, invert=false) => {
-      fillEl.style.width = `${v}%`;
-      fillEl.style.background = colorFor(v, invert);
-      numEl.textContent = v.toFixed(0);
-    };
-    set(detFill, detN, kpi.det);
-    set(warnFill, warnN, kpi.warn);
-    set(resFill, resN, kpi.res);
-    set(escFill, escN, kpi.esc, true);
-    set(repFill, repN, kpi.rep);
-  }
-
-  function renderSliders(){
-    aiVal.textContent = ai.value;
-    humVal.textContent = hum.value;
-    allyVal.textContent = ally.value;
-    convVal.textContent = conv.value;
-
-    const remaining = 100 - sumAlloc();
-    remain.textContent = remaining;
-
-    // Only allow commit if total == 100 and not locked
-    commitBtn.disabled = !(remaining === 0 && !locked);
-  }
-
-  function loadTurn(i){
-    locked = false;
-    outcomeBox.classList.add("hidden");
-    modePill.textContent = "Planning";
-
-    const t = TURNS[i];
-    turnTitle.textContent = `Turn ${t.id}: ${t.tag}`;
-    turnMeta.textContent = `Turn ${t.id} of ${TURNS.length}`;
-    eventTag.textContent = t.tag;
-    eventText.textContent = t.text;
-
-    renderSliders();
-    renderKPI();
-  }
-
-  function resetAlloc(){
-    ai.value = 25; hum.value = 25; ally.value = 25; conv.value = 25;
-    renderSliders();
-  }
-
-  function autoBalance(){
-    // Make total exactly 100 by adjusting Conventional Readiness last (simple, transparent rule)
-    const a = +ai.value, h = +hum.value, al = +ally.value;
-    let c = 100 - (a + h + al);
-    c = clamp(c, 0, 100);
-    conv.value = c;
-    renderSliders();
-  }
-
-  // Core evaluation function: stylised but coherent.
-  function evaluateTurn(turn, alloc){
-    // alloc in [0..100], sum = 100
-    const w = alloc.ai/100, h = alloc.hum/100, al = alloc.ally/100, c = alloc.conv/100;
-    const s = turn.stress;
-
-    // Base effectiveness profiles by stressor
-    // - AI good for cyber/traffic sensing, but brittle under high ambiguity/deception without HUMINT.
-    // - HUMINT best for ambiguity/intent.
-    // - Alliances provide warning + cover; too high can provoke domestic legitimacy costs.
-    // - Conventional increases deterrence but raises escalation and fiscal strain.
-    const warnGain =
-      (40*w) + (35*al) + (25*h)
-      - (20*(s.ambiguity/100) * (w - h > 0.15 ? (w - h) : 0)); // AI over HUMINT under ambiguity penalty
-
-    const detGain =
-      (45*c) + (20*w) + (20*al) + (15*h)
-      - (10*(s.political/100) * (c > 0.45 ? (c-0.45) : 0)); // visible militarisation under political stress
-
-    const resGain =
-      (30*h) + (25*al) + (20*w) + (25*(c<0.15?0.15:c)) // some baseline physical capacity needed
-      - (12*(s.cyber/100) * (w < 0.20 ? (0.20-w) : 0)); // underinvest in AI under cyber stress
-
-    const escDelta =
-      (28*c) + (12*w) + (10*al) - (18*h)
-      + (18*(s.threat/100) * (c > 0.35 ? (c-0.35) : 0)); // crisis militarisation escalates
-
-    const repDelta =
-      (22*al) + (18*h) + (10*w) - (12*c)
-      - (18*(s.political/100) * (al > 0.55 ? (al-0.55) : 0)); // perceived dependency / sovereignty talkback
-
-    // Convert to KPI changes with damping
-    // Stress reduces everything unless compensated.
-    const stressDrag = (s.threat + s.cyber + s.ambiguity + s.political)/400; // 0..1
-
-    const dDet = (detGain*0.35) - (12*stressDrag);
-    const dWarn = (warnGain*0.35) - (12*stressDrag);
-    const dRes  = (resGain*0.30) - (10*stressDrag);
-    const dEsc  = (escDelta*0.35) + (10*stressDrag);
-    const dRep  = (repDelta*0.30) - (10*stressDrag);
-
-    // Apply
-    kpi.det = clamp(kpi.det + dDet);
-    kpi.warn = clamp(kpi.warn + dWarn);
-    kpi.res = clamp(kpi.res + dRes);
-    kpi.esc = clamp(kpi.esc + dEsc);
-    kpi.rep = clamp(kpi.rep + dRep);
-
-    // Generate qualitative outcomes (few, readable bullets)
-    const bullets = [];
-
-    // Warning
-    if(dWarn > 4) bullets.push("Warning improved: you are more likely to detect probes early and reduce surprise.");
-    if(dWarn < -4) bullets.push("Warning degraded: higher chance of late detection and misclassification under clutter.");
-
-    // Deterrence and escalation
-    if(dDet > 4 && dEsc < 2) bullets.push("Deterrence strengthened without a major escalation spike: credible posture with restraint.");
-    if(dDet > 4 && dEsc > 6) bullets.push("Deterrence strengthened, but escalation risk rose sharply: signalling may be interpreted as preparation.");
-    if(dDet < -4) bullets.push("Deterrence weakened: adversaries may test boundaries with low-cost probes.");
-
-    // Resilience
-    if(dRes > 4) bullets.push("Resilience improved: you can absorb shocks and maintain continuity across domains.");
-    if(dRes < -4) bullets.push("Resilience weakened: the system is more fragile under disruption and fatigue.");
-
-    // Reputation
-    if(dRep > 3) bullets.push("Reputation/legitimacy improved: actions appear proportionate and internationally defensible.");
-    if(dRep < -3) bullets.push("Reputation costs increased: perceptions of overreaction or dependency gained traction.");
-
-    // Specific turn “teaching moments”
-    if(turn.id === 7){
-      if(w > 0.40 && h < 0.20) bullets.push("Deception penalty triggered: high sensing without local intent readout under saturated traffic.");
-      if(h >= 0.25) bullets.push("HUMINT mitigated deception: better ability to distinguish convoy noise from hostile masking.");
-    }
-    if(turn.id === 6){
-      if(al > 0.60) bullets.push("Alliance-dependency backlash: domestic sovereignty narratives reduce legitimacy benefits.");
-      if(al >= 0.35 && al <= 0.55) bullets.push("Balanced liaison investment: improved sharing without severe autonomy costs.");
-    }
-
-    if(bullets.length === 0) bullets.push("Mixed outcome: marginal changes; trade-offs largely cancelled each other out.");
-
-    return {
-      bullets,
-      delta: { dDet, dWarn, dRes, dEsc, dRep },
-      stress: s
-    };
-  }
-
-  function lockInputs(lock=true){
-    locked = lock;
-    [ai,hum,ally,conv].forEach(el => el.disabled = lock);
-    autoBalanceBtn.disabled = lock;
-    resetBtn.disabled = lock;
-    commitBtn.disabled = lock || (100 - sumAlloc() !== 0);
-  }
-
-  function commit(){
-    if(locked) return;
-    if(100 - sumAlloc() !== 0) return;
-
-    const turn = TURNS[idx];
-    const alloc = { ai:+ai.value, hum:+hum.value, ally:+ally.value, conv:+conv.value };
-    const result = evaluateTurn(turn, alloc);
-
-    // Record
-    history.push({
-      turn: turn.id,
-      tag: turn.tag,
-      event: turn.text,
-      ai: alloc.ai, hum: alloc.hum, ally: alloc.ally, conv: alloc.conv,
-      det: kpi.det.toFixed(0), warn: kpi.warn.toFixed(0), res: kpi.res.toFixed(0), esc: kpi.esc.toFixed(0), rep: kpi.rep.toFixed(0),
-      dDet: result.delta.dDet.toFixed(1), dWarn: result.delta.dWarn.toFixed(1), dRes: result.delta.dRes.toFixed(1), dEsc: result.delta.dEsc.toFixed(1), dRep: result.delta.dRep.toFixed(1)
+  grid.querySelectorAll('.state-card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectedScenarioState = STATES.find(s => s.id === card.dataset.state);
+      grid.querySelectorAll('.state-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      loadScenario();
     });
+  });
+}
 
-    // Show outcomes
-    outcomeList.innerHTML = "";
-    result.bullets.slice(0,5).forEach(b => {
-      const li = document.createElement("li"); li.textContent = b; outcomeList.appendChild(li);
-    });
+function loadScenario() {
+  if (!selectedScenarioState) return;
 
-    renderKPI();
-    modePill.textContent = "Committed";
-    outcomeBox.classList.remove("hidden");
-    lockInputs(true);
-  }
+  const scenario = SCENARIOS[currentScenario];
 
-  function next(){
-    idx += 1;
-    if(idx >= TURNS.length){
-      endSim();
-      return;
-    }
-    lockInputs(false);
-    loadTurn(idx);
-  }
+  document.getElementById('stateSelectPrompt').classList.add('hidden');
+  document.getElementById('scenarioContent').classList.remove('hidden');
+  document.getElementById('outcomePanel').classList.add('hidden');
 
-  function endSim(){
-    sim.classList.add("hidden");
-    summary.classList.remove("hidden");
+  document.getElementById('scenarioMeta').textContent = `Scenario ${currentScenario + 1} of ${SCENARIOS.length} | Playing as ${selectedScenarioState.name}`;
+  document.getElementById('scenarioTag').textContent = scenario.tag;
+  document.getElementById('scenarioTitle').textContent = scenario.title;
+  document.getElementById('scenarioContext').textContent = scenario.context;
 
-    // Final assessment (simple heuristic)
-    const score = (kpi.det*0.22) + (kpi.warn*0.22) + (kpi.res*0.22) + (kpi.rep*0.22) + ((100-kpi.esc)*0.12);
-    let verdict = "Mixed posture: you achieved some capacity gains but paid meaningful costs in escalation, resilience, or legitimacy.";
-    if(score >= 72) verdict = "High-performing posture: you balanced software, human intelligence, and alliance leverage with manageable escalation.";
-    if(score <= 55) verdict = "Fragile posture: either deterrence, warning, or resilience fell behind the crisis tempo, increasing strategic vulnerability.";
+  document.getElementById('stakeCapability').textContent = scenario.stakes.capability;
+  document.getElementById('stakeControl').textContent = scenario.stakes.control;
+  document.getElementById('stakeLegitimacy').textContent = scenario.stakes.legitimacy;
 
-    finalMeta.textContent = `Final score (stylised): ${score.toFixed(0)} / 100`;
-    finalText.textContent = verdict;
-
-    // Table
-    let html = `<table><thead><tr>
-      <th>Turn</th><th>Allocation (AI/HUM/ALLY/CONV)</th>
-      <th>KPIs after turn (DET/WARN/RES/ESC/REP)</th><th>Δ (DET/WARN/RES/ESC/REP)</th>
-    </tr></thead><tbody>`;
-
-    history.forEach(r => {
-      const hl = (r.turn===6 || r.turn===7 || r.turn===8) ? " class='hl'" : "";
-      html += `<tr${hl}>
-        <td><b>${r.turn}</b><br><span class="small">${r.tag}</span></td>
-        <td>${r.ai}/${r.hum}/${r.ally}/${r.conv}</td>
-        <td>${r.det}/${r.warn}/${r.res}/${r.esc}/${r.rep}</td>
-        <td>${r.dDet}/${r.dWarn}/${r.dRes}/${r.dEsc}/${r.dRep}</td>
-      </tr>`;
-    });
-
-    html += `</tbody></table>`;
-    tableWrap.innerHTML = html;
-  }
-
-  function toCSV(){
-    const cols = [
-      "turn","tag","ai","hum","ally","conv",
-      "det","warn","res","esc","rep",
-      "dDet","dWarn","dRes","dEsc","dRep"
-    ];
-    const lines = [cols.join(",")];
-    history.forEach(r => {
-      const row = cols.map(c => String(r[c]).replace(/"/g,'""'));
-      lines.push(row.join(","));
-    });
-    return lines.join("\n");
-  }
-
-  function downloadCSV(){
-    const csv = toCSV();
-    const blob = new Blob([csv], {type:"text/csv;charset=utf-8;"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "digital_deterrence_run.csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
-
-  function restart(){
-    idx = 0;
-    locked = false;
-    history.length = 0;
-    kpi = { det:50, warn:50, res:50, esc:30, rep:60 };
-    resetAlloc();
-
-    summary.classList.add("hidden");
-    sim.classList.remove("hidden");
-    lockInputs(false);
-    loadTurn(0);
-  }
-
-  // ---------- Wiring ----------
-  startBtn.addEventListener("click", () => {
-    intro.classList.add("hidden");
-    sim.classList.remove("hidden");
-    resetAlloc();
-    loadTurn(0);
+  // Update progress bar
+  document.querySelectorAll('.progress-step').forEach((step, i) => {
+    step.classList.remove('completed', 'current');
+    if (i < currentScenario) step.classList.add('completed');
+    if (i === currentScenario) step.classList.add('current');
   });
 
-  [ai,hum,ally,conv].forEach(el => el.addEventListener("input", renderSliders));
-  commitBtn.addEventListener("click", commit);
-  nextBtn.addEventListener("click", next);
-  autoBalanceBtn.addEventListener("click", autoBalance);
-  resetBtn.addEventListener("click", resetAlloc);
+  // Render options
+  const optionsGrid = document.getElementById('optionsGrid');
+  optionsGrid.innerHTML = scenario.options.map(opt => `
+    <div class="option-card" data-option="${opt.id}">
+      <div class="option-header">
+        <div class="option-label">${opt.label}</div>
+      </div>
+      <div class="option-title">${opt.title}</div>
+      <div class="option-desc">${opt.description}</div>
+      <div class="option-impacts">
+        ${opt.impacts.map(imp => `<span class="impact-chip ${imp.type}">${imp.text}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
 
-  downloadBtn.addEventListener("click", downloadCSV);
-  restartBtn.addEventListener("click", () => {
-    summary.classList.add("hidden");
-    intro.classList.remove("hidden");
+  optionsGrid.querySelectorAll('.option-card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectedOption = scenario.options.find(o => o.id === card.dataset.option);
+      optionsGrid.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      document.getElementById('commitDecisionBtn').disabled = false;
+    });
   });
 
-  // initial render
-  renderKPI();
-  renderSliders();
+  selectedOption = null;
+  document.getElementById('commitDecisionBtn').disabled = true;
+}
+
+function commitDecision() {
+  if (!selectedOption) return;
+
+  const scenario = SCENARIOS[currentScenario];
+
+  // Update cumulative scores
+  cumulativeScores.capability += selectedOption.changes.capability;
+  cumulativeScores.control += selectedOption.changes.control;
+  cumulativeScores.legitimacy += selectedOption.changes.legitimacy;
+
+  // Record decision
+  decisionHistory.push({
+    scenario: scenario.tag,
+    state: selectedScenarioState.name,
+    decision: selectedOption.title,
+    capability: selectedOption.changes.capability,
+    control: selectedOption.changes.control,
+    legitimacy: selectedOption.changes.legitimacy
+  });
+
+  // Show outcome
+  const formatChange = (val) => {
+    const prefix = val > 0 ? '+' : '';
+    return prefix + val;
+  };
+
+  const outcomeCapEl = document.getElementById('outcomeCapability');
+  const outcomeCtrlEl = document.getElementById('outcomeControl');
+  const outcomeLegEl = document.getElementById('outcomeLegitimacy');
+
+  outcomeCapEl.textContent = formatChange(selectedOption.changes.capability);
+  outcomeCapEl.className = 'change ' + (selectedOption.changes.capability >= 0 ? 'positive' : 'negative');
+
+  outcomeCtrlEl.textContent = formatChange(selectedOption.changes.control);
+  outcomeCtrlEl.className = 'change ' + (selectedOption.changes.control >= 0 ? 'positive' : 'negative');
+
+  outcomeLegEl.textContent = formatChange(selectedOption.changes.legitimacy);
+  outcomeLegEl.className = 'change ' + (selectedOption.changes.legitimacy >= 0 ? 'positive' : 'negative');
+
+  document.getElementById('outcomeNarrative').innerHTML = `
+    <p><strong>As ${selectedScenarioState.name}:</strong> ${selectedOption.narrative}</p>
+    <ul>
+      <li><strong>State-specific consideration:</strong> Given ${selectedScenarioState.name}'s profile
+      (Capability: ${selectedScenarioState.capability}, Control: ${selectedScenarioState.control},
+      Legitimacy: ${selectedScenarioState.legitimacy}), this choice ${analyseStateContext()}</li>
+    </ul>
+  `;
+
+  document.getElementById('outcomePanel').classList.remove('hidden');
+  document.getElementById('commitDecisionBtn').disabled = true;
+
+  // Update next button text
+  const nextBtn = document.getElementById('nextScenarioBtn');
+  if (currentScenario >= SCENARIOS.length - 1) {
+    nextBtn.textContent = 'Complete Simulation';
+  } else {
+    nextBtn.textContent = 'Next Scenario';
+  }
+}
+
+function analyseStateContext() {
+  const state = selectedScenarioState;
+  const opt = selectedOption;
+
+  if (opt.changes.capability < 0 && state.capability < 50) {
+    return 'may be particularly costly given limited existing capability.';
+  }
+  if (opt.changes.control > 0 && state.control > 80) {
+    return 'reinforces already strong institutional control mechanisms.';
+  }
+  if (opt.changes.legitimacy < 0 && state.legitimacy < 50) {
+    return 'risks further erosion of already contested legitimacy.';
+  }
+  if (opt.changes.capability > 0 && state.capability > 80) {
+    return 'compounds existing capability advantages.';
+  }
+  return 'reflects the trade-offs inherent in technological governance.';
+}
+
+function nextScenario() {
+  currentScenario++;
+
+  if (currentScenario >= SCENARIOS.length) {
+    showDebrief();
+    return;
+  }
+
+  // Reset for next scenario but keep the same state
+  document.getElementById('scenarioContent').classList.add('hidden');
+  document.getElementById('stateSelectPrompt').classList.remove('hidden');
+
+  // Re-render state select with previous selection
+  renderScenarioStateSelect();
+
+  // Pre-select the previous state
+  setTimeout(() => {
+    const prevStateCard = document.querySelector(`#scenarioStateSelect [data-state="${selectedScenarioState.id}"]`);
+    if (prevStateCard) {
+      prevStateCard.click();
+    }
+  }, 0);
+}
+
+function showDebrief() {
+  switchTab('debrief');
+
+  // Render summary table
+  const tbody = document.getElementById('summaryBody');
+  tbody.innerHTML = decisionHistory.map(d => `
+    <tr>
+      <td>${d.scenario}</td>
+      <td>${d.state}</td>
+      <td>${d.decision}</td>
+      <td style="color: ${d.capability >= 0 ? 'var(--good)' : 'var(--danger)'}">${d.capability >= 0 ? '+' : ''}${d.capability}</td>
+      <td style="color: ${d.control >= 0 ? 'var(--good)' : 'var(--danger)'}">${d.control >= 0 ? '+' : ''}${d.control}</td>
+      <td style="color: ${d.legitimacy >= 0 ? 'var(--good)' : 'var(--danger)'}">${d.legitimacy >= 0 ? '+' : ''}${d.legitimacy}</td>
+    </tr>
+  `).join('');
+
+  // Final position analysis
+  const totalChange = cumulativeScores.capability + cumulativeScores.control + cumulativeScores.legitimacy;
+  let assessment = '';
+
+  if (cumulativeScores.capability > cumulativeScores.control && cumulativeScores.capability > cumulativeScores.legitimacy) {
+    assessment = 'Your decisions prioritised <strong>capability</strong> - building and preserving technical capacity. This approach emphasises technological power as possession.';
+  } else if (cumulativeScores.control > cumulativeScores.capability && cumulativeScores.control > cumulativeScores.legitimacy) {
+    assessment = 'Your decisions prioritised <strong>control</strong> - strengthening governance and institutional frameworks. This approach emphasises technological power as regulatory authority.';
+  } else if (cumulativeScores.legitimacy > cumulativeScores.capability && cumulativeScores.legitimacy > cumulativeScores.control) {
+    assessment = 'Your decisions prioritised <strong>legitimacy</strong> - building normative authority and partnership trust. This approach emphasises technological power as accepted authority.';
+  } else {
+    assessment = 'Your decisions reflect a <strong>balanced approach</strong> across capability, control, and legitimacy - recognising that technological power emerges from their interaction.';
+  }
+
+  document.getElementById('finalPosition').innerHTML = `
+    <strong>Cumulative changes:</strong> Capability ${cumulativeScores.capability >= 0 ? '+' : ''}${cumulativeScores.capability},
+    Control ${cumulativeScores.control >= 0 ? '+' : ''}${cumulativeScores.control},
+    Legitimacy ${cumulativeScores.legitimacy >= 0 ? '+' : ''}${cumulativeScores.legitimacy}<br><br>
+    ${assessment}
+  `;
+
+  document.getElementById('debriefMeta').textContent = `${decisionHistory.length} decisions completed`;
+}
+
+function downloadResults() {
+  const headers = ['Scenario', 'State', 'Decision', 'Capability Change', 'Control Change', 'Legitimacy Change'];
+  const rows = decisionHistory.map(d => [d.scenario, d.state, d.decision, d.capability, d.control, d.legitimacy]);
+
+  const totals = ['TOTAL', '', '', cumulativeScores.capability, cumulativeScores.control, cumulativeScores.legitimacy];
+
+  const csv = [headers, ...rows, totals].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'geopolitics_tech_simulation_results.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function restart() {
+  currentScenario = 0;
+  selectedOption = null;
+  selectedScenarioState = null;
+  decisionHistory = [];
+  cumulativeScores = { capability: 0, control: 0, legitimacy: 0 };
+
+  document.getElementById('scenarioContent').classList.add('hidden');
+  document.getElementById('stateSelectPrompt').classList.remove('hidden');
+  document.getElementById('comparisonTable').classList.add('hidden');
+  document.getElementById('stateDetail').classList.add('hidden');
+
+  renderScenarioStateSelect();
+
+  switchTab('intro');
+}
+
+// ============ EVENT LISTENERS ============
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+});
+
+document.getElementById('startBtn').addEventListener('click', () => switchTab('compare'));
+document.getElementById('toScenarioBtn').addEventListener('click', () => switchTab('scenario'));
+document.getElementById('compareAllBtn').addEventListener('click', renderComparisonTable);
+document.getElementById('commitDecisionBtn').addEventListener('click', commitDecision);
+document.getElementById('nextScenarioBtn').addEventListener('click', nextScenario);
+document.getElementById('downloadResultsBtn').addEventListener('click', downloadResults);
+document.getElementById('restartBtn').addEventListener('click', restart);
+
+// ============ INIT ============
+
+renderStateCards();
+renderScenarioStateSelect();
 </script>
 </body>
 </html>
