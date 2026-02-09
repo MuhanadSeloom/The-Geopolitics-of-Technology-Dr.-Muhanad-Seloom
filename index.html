@@ -1,1706 +1,1775 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Muhanad Seloom — Intelligence, Security & Technology</title>
-    <meta name="description" content="Dr. Muhanad Seloom is a scholar, practitioner, and public intellectual specialising in intelligence studies, security governance, and the geopolitics of technology.">
-    <meta name="keywords" content="Muhanad Seloom, intelligence studies, security, Middle East, technology politics, Doha Institute, Kurdish studies, PKK, Iraq intelligence">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Dr. Muhanad Seloom — Intelligence, Security & Technology">
-    <meta property="og:description" content="Scholar, practitioner, and public intellectual studying how states authorise power through intelligence and technology.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://muhanadseloom.com">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@MuhanadSeloom">
-    <meta name="twitter:title" content="Dr. Muhanad Seloom">
-    <meta name="twitter:description" content="Scholar, practitioner, and public intellectual studying how states authorise power through intelligence and technology.">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --ink: #0a0a0f;
-            --ink-soft: #2a2a35;
-            --ink-muted: #6b6b7b;
-            --parchment: #f5f2ed;
-            --parchment-dark: #e8e4dd;
-            --accent: #8b3a3a;
-            --accent-light: #a85454;
-            --gold: #b8860b;
-            --bone: #faf8f5;
-            --serif: 'Cormorant Garamond', Georgia, serif;
-            --sans: 'DM Sans', -apple-system, sans-serif;
-            --mono: 'JetBrains Mono', monospace;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: var(--sans);
-            color: var(--ink);
-            background: var(--bone);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        /* ═══════════════════════════════════════════
-           NAVIGATION
-        ═══════════════════════════════════════════ */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.4s ease;
-            background: rgba(250, 248, 245, 0.97);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(10, 10, 15, 0.06);
-        }
-
-        nav.scrolled {
-            background: rgba(250, 248, 245, 0.98);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(10, 10, 15, 0.1);
-            padding: 0.7rem 2rem;
-        }
-
-        .nav-name {
-            font-family: var(--serif);
-            font-size: 2rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            color: var(--ink);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.15rem;
-        }
-
-        .nav-name a {
-            color: var(--ink);
-            text-decoration: none;
-        }
-
-        .nav-x-link {
-            display: inline-flex;
-            align-items: center;
-            opacity: 0.4;
-            transition: opacity 0.3s;
-        }
-
-        .nav-x-link:hover {
-            opacity: 0.8;
-        }
-
-        .nav-x-link svg {
-            width: 18px;
-            height: 18px;
-            fill: var(--ink);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-family: var(--sans);
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--ink-muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .nav-toggle span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--ink);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        /* ═══════════════════════════════════════════
-           HERO
-        ═══════════════════════════════════════════ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 45%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--parchment) 0%, var(--parchment-dark) 100%);
-            clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
-            z-index: 0;
-        }
-
-        .hero-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text {
-            max-width: 560px;
-        }
-
-        .hero-label {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .hero-label::before {
-            content: '';
-            display: block;
-            width: 32px;
-            height: 1px;
-            background: var(--accent);
-        }
-
-        .hero h1 {
-            font-family: var(--serif);
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            font-weight: 500;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            color: var(--ink);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--accent);
-        }
-
-        .hero-description {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: var(--ink-soft);
-            margin-bottom: 2rem;
-            max-width: 480px;
-        }
-
-        .hero-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--ink-muted);
-        }
-
-        .hero-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .hero-meta .dot {
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: var(--accent);
-            display: inline-block;
-        }
-
-        .hero-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .portrait-frame {
-            width: 380px;
-            height: 480px;
-            background: var(--parchment-dark);
-            border: 1px solid rgba(10, 10, 15, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .portrait-frame::after {
-            content: '';
-            position: absolute;
-            inset: 12px;
-            border: 1px solid rgba(10, 10, 15, 0.06);
-            pointer-events: none;
-        }
-
-        .portrait-placeholder {
-            font-family: var(--serif);
-            font-size: 0.85rem;
-            color: var(--ink-muted);
-            font-style: italic;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .portrait-placeholder .initials {
-            font-family: var(--serif);
-            font-size: 4rem;
-            font-weight: 300;
-            color: var(--ink);
-            opacity: 0.15;
-            display: block;
-            margin-bottom: 1rem;
-            letter-spacing: 0.1em;
-        }
-
-        /* ═══════════════════════════════════════════
-           SECTION STYLING
-        ═══════════════════════════════════════════ */
-        section {
-            padding: 6rem 2rem;
-        }
-
-        .section-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: baseline;
-            gap: 1.5rem;
-            margin-bottom: 3.5rem;
-        }
-
-        .section-number {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            color: var(--accent);
-            letter-spacing: 0.05em;
-        }
-
-        .section-title {
-            font-family: var(--serif);
-            font-size: 2rem;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-        }
-
-        .section-line {
-            flex: 1;
-            height: 1px;
-            background: var(--parchment-dark);
-        }
-
-        /* ═══════════════════════════════════════════
-           ABOUT
-        ═══════════════════════════════════════════ */
-        .about-section {
-            background: var(--parchment);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 4rem;
-        }
-
-        .about-text {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: var(--ink-soft);
-        }
-
-        .about-text p + p {
-            margin-top: 1.5rem;
-        }
-
-        .about-sidebar {
-            padding-top: 0.5rem;
-        }
-
-        .sidebar-block {
-            margin-bottom: 2.5rem;
-        }
-
-        .sidebar-block h4 {
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-        }
-
-        .sidebar-block p, .sidebar-block li {
-            font-size: 0.9rem;
-            color: var(--ink-soft);
-            line-height: 1.6;
-        }
-
-        .sidebar-block ul {
-            list-style: none;
-        }
-
-        .sidebar-block li + li {
-            margin-top: 0.35rem;
-        }
-
-        /* ═══════════════════════════════════════════
-           RESEARCH PILLARS
-        ═══════════════════════════════════════════ */
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .pillar-card {
-            padding: 2.5rem 2rem;
-            background: var(--bone);
-            border: 1px solid var(--parchment-dark);
-            position: relative;
-            transition: all 0.4s ease;
-        }
-
-        .pillar-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .pillar-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .pillar-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .pillar-icon {
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-            opacity: 0.7;
-        }
-
-        .pillar-card h3 {
-            font-family: var(--serif);
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .pillar-card p {
-            font-size: 0.88rem;
-            color: var(--ink-muted);
-            line-height: 1.65;
-        }
-
-        .pillar-keywords {
-            margin-top: 1.25rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .pillar-keywords span {
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.05em;
-            padding: 0.25rem 0.6rem;
-            background: var(--parchment);
-            color: var(--ink-muted);
-            text-transform: uppercase;
-        }
-
-        /* ═══════════════════════════════════════════
-           PUBLICATIONS
-        ═══════════════════════════════════════════ */
-        .publications-section {
-            background: var(--parchment);
-        }
-
-        .pub-category {
-            margin-bottom: 3rem;
-        }
-
-        .pub-category-title {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid var(--parchment-dark);
-        }
-
-        .pub-item {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(10, 10, 15, 0.04);
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            gap: 1.5rem;
-            align-items: baseline;
-        }
-
-        .pub-year {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            color: var(--ink-muted);
-            min-width: 3.5rem;
-        }
-
-        .pub-details h4 {
-            font-family: var(--serif);
-            font-size: 1.1rem;
-            font-weight: 600;
-            line-height: 1.4;
-            margin-bottom: 0.35rem;
-        }
-
-        .pub-details .pub-venue {
-            font-size: 0.85rem;
-            color: var(--ink-muted);
-            font-style: italic;
-        }
-
-        .pub-details .pub-note {
-            font-size: 0.8rem;
-            color: var(--accent);
-            margin-top: 0.25rem;
-        }
-
-        .pub-link {
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
-            text-decoration: none;
-            white-space: nowrap;
-            transition: opacity 0.3s;
-        }
-
-        .pub-link:hover {
-            opacity: 0.7;
-        }
-
-        /* ═══════════════════════════════════════════
-           MEDIA & PUBLIC ENGAGEMENT
-        ═══════════════════════════════════════════ */
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .media-card {
-            padding: 2rem;
-            background: var(--parchment);
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .media-card:hover {
-            border-color: var(--parchment-dark);
-        }
-
-        .media-card .outlet {
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-        }
-
-        .media-card h4 {
-            font-family: var(--serif);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-        }
-
-        .media-card p {
-            font-size: 0.85rem;
-            color: var(--ink-muted);
-            line-height: 1.6;
-        }
-
-        .media-card a {
-            display: inline-block;
-            margin-top: 0.75rem;
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .media-card a:hover {
-            opacity: 0.7;
-        }
-
-        .featured-media {
-            margin-top: 3rem;
-        }
-
-        .featured-media h3 {
-            font-family: var(--serif);
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            color: var(--ink);
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .video-card {
-            border-radius: 4px;
-            overflow: hidden;
-            background: var(--ink);
-        }
-
-        .video-card iframe {
-            width: 100%;
-            aspect-ratio: 16/9;
-            display: block;
-            border: none;
-        }
-
-        .video-card .video-caption {
-            padding: 0.8rem 1rem;
-            background: var(--ink);
-            color: var(--parchment);
-        }
-
-        .video-card .video-caption h4 {
-            font-family: var(--sans);
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 0.3rem;
-        }
-
-        .video-card .video-caption span {
-            font-size: 0.75rem;
-            opacity: 0.6;
-        }
-
-        .oped-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            margin-top: 1.5rem;
-        }
-
-        .oped-item {
-            display: flex;
-            align-items: baseline;
-            gap: 1rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(26,26,33,0.08);
-        }
-
-        .oped-item .oped-date {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            color: var(--accent);
-            white-space: nowrap;
-            min-width: 4.5rem;
-        }
-
-        .oped-item a {
-            font-family: var(--sans);
-            font-size: 0.9rem;
-            color: var(--ink);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .oped-item a:hover {
-            color: var(--accent);
-        }
-
-        .oped-item .oped-source {
-            font-size: 0.75rem;
-            color: rgba(26,26,33,0.5);
-            margin-left: 0.5rem;
-        }
-
-        .media-summary {
-            margin-top: 3rem;
-            padding: 2rem;
-            background: var(--ink);
-            color: var(--parchment);
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .media-stat .stat-number {
-            font-family: var(--serif);
-            font-size: 2.2rem;
-            font-weight: 300;
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .media-stat .stat-label {
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            opacity: 0.6;
-        }
-
-        /* ═══════════════════════════════════════════
-           TEACHING & SIMULATIONS
-        ═══════════════════════════════════════════ */
-        .teaching-section {
-            background: var(--parchment);
-        }
-
-        .teaching-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .teaching-block h3 {
-            font-family: var(--serif);
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .teaching-block p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--ink-soft);
-            margin-bottom: 1.25rem;
-        }
-
-        .course-list {
-            list-style: none;
-        }
-
-        .course-list li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(10, 10, 15, 0.05);
-            font-size: 0.92rem;
-            color: var(--ink-soft);
-            display: flex;
-            align-items: baseline;
-            gap: 0.75rem;
-        }
-
-        .course-list li::before {
-            content: '→';
-            color: var(--accent);
-            font-size: 0.8rem;
-            flex-shrink: 0;
-        }
-
-        .sim-badge {
-            display: inline-block;
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 0.2rem 0.5rem;
-            background: rgba(139, 58, 58, 0.08);
-            color: var(--accent);
-            margin-top: 0.75rem;
-        }
-
-        /* ═══════════════════════════════════════════
-           EXPERIENCE TIMELINE
-        ═══════════════════════════════════════════ */
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 1px;
-            background: var(--parchment-dark);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2.5rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -3rem;
-            top: 0.5rem;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--accent);
-            border: 2px solid var(--bone);
-            box-shadow: 0 0 0 1px var(--accent);
-        }
-
-        .timeline-period {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-bottom: 0.35rem;
-        }
-
-        .timeline-item h4 {
-            font-family: var(--serif);
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-
-        .timeline-item .timeline-org {
-            font-size: 0.88rem;
-            color: var(--ink-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-item p {
-            font-size: 0.85rem;
-            color: var(--ink-muted);
-            line-height: 1.6;
-            max-width: 500px;
-        }
-
-        /* ═══════════════════════════════════════════
-           CONTACT
-        ═══════════════════════════════════════════ */
-        .contact-section {
-            background: var(--ink);
-            color: var(--parchment);
-            padding: 5rem 2rem;
-        }
-
-        .contact-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-text h2 {
-            font-family: var(--serif);
-            font-size: 2.2rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .contact-text p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            opacity: 0.7;
-            max-width: 400px;
-        }
-
-        .contact-links {
-            padding-top: 1rem;
-        }
-
-        .contact-link-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.25rem 0;
-            border-bottom: 1px solid rgba(245, 242, 237, 0.08);
-        }
-
-        .contact-link-item .link-label {
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            opacity: 0.5;
-            min-width: 80px;
-        }
-
-        .contact-link-item a {
-            color: var(--parchment);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: opacity 0.3s;
-        }
-
-        .contact-link-item a:hover {
-            opacity: 0.7;
-        }
-
-        .contact-arabic {
-            font-family: var(--serif);
-            font-size: 1.6rem;
-            font-weight: 300;
-            opacity: 0.15;
-            margin-top: 3rem;
-            direction: rtl;
-            letter-spacing: 0.02em;
-        }
-
-        /* ═══════════════════════════════════════════
-           FOOTER
-        ═══════════════════════════════════════════ */
-        footer {
-            background: var(--ink);
-            border-top: 1px solid rgba(245, 242, 237, 0.06);
-            padding: 2rem;
-            text-align: center;
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            color: rgba(245, 242, 237, 0.3);
-        }
-
-        /* ═══════════════════════════════════════════
-           ANIMATIONS
-        ═══════════════════════════════════════════ */
-        .fade-in {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.hidden {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ═══════════════════════════════════════════
-           RESPONSIVE
-        ═══════════════════════════════════════════ */
-        @media (max-width: 900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero::before {
-                display: none;
-            }
-
-            .hero-visual {
-                order: -1;
-                max-width: 280px;
-                margin: 0 auto;
-            }
-
-            .portrait-frame {
-                width: 280px;
-                height: 320px;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .pillars-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .media-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .video-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .media-summary {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .teaching-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-inner {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .pub-item {
-                grid-template-columns: auto 1fr;
-            }
-
-            .pub-link {
-                grid-column: 2;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                background: rgba(250, 248, 245, 0.98);
-                padding: 1.5rem 2rem;
-                gap: 1rem;
-                border-bottom: 1px solid var(--parchment-dark);
-            }
-
-            .nav-links.open {
-                display: flex;
-            }
-
-            .nav-toggle {
-                display: block;
-            }
-        }
-
-        @media (max-width: 600px) {
-            section {
-                padding: 4rem 1.25rem;
-            }
-
-            .hero {
-                padding: 5rem 1.25rem 3rem;
-            }
-
-            .media-summary {
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem;
-                padding: 1.5rem;
-            }
-
-            .hero-visual {
-                max-width: 220px;
-            }
-
-            .portrait-frame {
-                width: 220px;
-                height: 260px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Technology & Geopolitics Simulation | The Geopolitics of Technology</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --accent: #3b82f6;
+      --accent-light: #dbeafe;
+      --capability: #8b5cf6;
+      --control: #f59e0b;
+      --legitimacy: #10b981;
+      --danger: #ef4444;
+      --line: #e2e8f0;
+      --highlight: #fef3c7;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: #fff;
+      padding: 24px 24px 20px;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    header .course-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    header .subtitle {
+      margin: 8px 0 0;
+      color: #cbd5e1;
+      font-size: 14px;
+      max-width: 800px;
+    }
+
+    header .instructor {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      gap: 16px;
+    }
+
+    .card-header h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .card-header .meta {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .framework-legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 12px 16px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .framework-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .framework-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .framework-dot.capability { background: var(--capability); }
+    .framework-dot.control { background: var(--control); }
+    .framework-dot.legitimacy { background: var(--legitimacy); }
+
+    /* Navigation Tabs */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px 16px;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab:hover { color: var(--ink); }
+    .tab.active {
+      background: var(--card);
+      color: var(--ink);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* State Comparison Grid */
+    .states-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .state-card {
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .state-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    }
+
+    .state-card.selected {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .state-card .flag {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .state-card h3 {
+      margin: 0 0 4px;
+      font-size: 16px;
+    }
+
+    .state-card .region {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .indicator-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .indicator-label {
+      font-size: 12px;
+      width: 80px;
+      color: var(--muted);
+    }
+
+    .indicator-bar {
+      flex: 1;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .indicator-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    .indicator-fill.capability { background: var(--capability); }
+    .indicator-fill.control { background: var(--control); }
+    .indicator-fill.legitimacy { background: var(--legitimacy); }
+
+    .indicator-value {
+      font-size: 12px;
+      font-weight: 600;
+      width: 32px;
+      text-align: right;
+    }
+
+    /* Scenario Panel */
+    .scenario-box {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .scenario-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--accent);
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .scenario-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+
+    .scenario-context {
+      font-size: 14px;
+      color: var(--ink);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .scenario-stakes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stake-item {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .stake-item.capability { border-left: 3px solid var(--capability); }
+    .stake-item.control { border-left: 3px solid var(--control); }
+    .stake-item.legitimacy { border-left: 3px solid var(--legitimacy); }
+
+    .stake-item h4 {
+      margin: 0 0 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stake-item.capability h4 { color: var(--capability); }
+    .stake-item.control h4 { color: var(--control); }
+    .stake-item.legitimacy h4 { color: var(--legitimacy); }
+
+    .stake-item p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Decision Options */
+    .options-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .option-card {
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-card:hover {
+      border-color: var(--accent);
+      background: #fafafa;
+    }
+
+    .option-card.selected {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .option-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .option-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .option-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 4px 0;
+    }
+
+    .option-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .option-impacts {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .impact-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .impact-chip.positive { background: #dcfce7; color: #166534; }
+    .impact-chip.negative { background: #fee2e2; color: #991b1b; }
+    .impact-chip.neutral { background: #f1f5f9; color: #475569; }
+
+    /* Outcome Panel */
+    .outcome-panel {
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    .outcome-panel h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      color: #92400e;
+    }
+
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .outcome-item {
+      text-align: center;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+    }
+
+    .outcome-item .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .outcome-item.capability .label { color: var(--capability); }
+    .outcome-item.control .label { color: var(--control); }
+    .outcome-item.legitimacy .label { color: var(--legitimacy); }
+
+    .outcome-item .change {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .outcome-item .change.positive { color: #16a34a; }
+    .outcome-item .change.negative { color: #dc2626; }
+
+    .outcome-narrative {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #78350f;
+    }
+
+    .outcome-narrative ul {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+
+    .outcome-narrative li {
+      margin: 6px 0;
+    }
+
+    /* Buttons */
+    .btn {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover { background: #2563eb; }
+    .btn-primary:disabled {
+      background: #93c5fd;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--ink);
+    }
+
+    .btn-secondary:hover { background: #e2e8f0; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Progress Tracker */
+    .progress-bar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+
+    .progress-step {
+      flex: 1;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 3px;
+    }
+
+    .progress-step.completed { background: var(--accent); }
+    .progress-step.current { background: #93c5fd; }
+
+    /* Summary Table */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 16px;
+    }
+
+    .summary-table th,
+    .summary-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summary-table th {
+      background: #f8fafc;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+
+    .summary-table tr:hover td {
+      background: #fafafa;
+    }
+
+    /* Debrief Section */
+    .debrief-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .debrief-card {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .debrief-card h4 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .debrief-card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .debrief-card li {
+      margin: 8px 0;
+    }
+
+    /* Comparison View */
+    .comparison-header {
+      display: grid;
+      grid-template-columns: 200px repeat(3, 1fr);
+      gap: 12px;
+      padding: 12px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 200px repeat(3, 1fr);
+      gap: 12px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .comparison-row:hover {
+      background: #fafafa;
+    }
+
+    .comparison-row .metric {
+      font-weight: 500;
+    }
+
+    /* Hidden utility */
+    .hidden { display: none !important; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .scenario-stakes { grid-template-columns: 1fr; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .framework-legend { flex-direction: column; gap: 8px; }
+      .comparison-header,
+      .comparison-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    /* State profile detail */
+    .state-profile {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .state-profile { grid-template-columns: 1fr; }
+    }
+
+    .profile-section h4 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .profile-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .profile-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .profile-list li:last-child {
+      border-bottom: none;
+    }
+
+    .profile-value {
+      font-weight: 600;
+    }
+
+    /* Intro styles */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+      .intro-grid { grid-template-columns: 1fr; }
+    }
+
+    .intro-card {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--line);
+    }
+
+    .intro-card h3 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .intro-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .learning-objectives {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .learning-objectives h4 {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: var(--accent);
+    }
+
+    .learning-objectives ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+    }
+
+    .learning-objectives li {
+      margin: 6px 0;
+    }
+  </style>
 </head>
 <body>
+<header>
+  <div class="course-tag">The Geopolitics of Technology</div>
+  <h1>Technology & Geopolitics: A Structured Simulation</h1>
+  <p class="subtitle">
+    Explore how states, firms, and international bodies compete and cooperate in the digital era.
+    Analyse technological power through <strong>Capability</strong>, <strong>Control</strong>, and <strong>Legitimacy</strong>.
+  </p>
+  <p class="instructor">The Geopolitics of Technology | Dr. Muhanad Seloom</p>
+</header>
 
-    <!-- ═══════════ NAVIGATION ═══════════ -->
-    <nav id="navbar">
-        <span class="nav-name"><a href="#">Dr. Muhanad Seloom</a>&nbsp;<a href="https://x.com/MuhanadSeloom" target="_blank" rel="noopener" class="nav-x-link"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></span>
-        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#media">Media</a></li>
-            <li><a href="#teaching">Teaching</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
+<main>
+  <!-- Framework Legend -->
+  <div class="framework-legend">
+    <div class="framework-item">
+      <div class="framework-dot capability"></div>
+      <span><strong>Capability</strong> &mdash; technical capacity, infrastructure, innovation</span>
+    </div>
+    <div class="framework-item">
+      <div class="framework-dot control"></div>
+      <span><strong>Control</strong> &mdash; governance, regulation, institutional power</span>
+    </div>
+    <div class="framework-item">
+      <div class="framework-dot legitimacy"></div>
+      <span><strong>Legitimacy</strong> &mdash; authority, norms, international standing</span>
+    </div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="tabs">
+    <button class="tab active" data-tab="intro">Introduction</button>
+    <button class="tab" data-tab="compare">Compare States</button>
+    <button class="tab" data-tab="scenario">Decision Scenario</button>
+    <button class="tab" data-tab="debrief">Debrief</button>
+  </div>
+
+  <!-- INTRO SECTION -->
+  <section id="intro" class="card">
+    <div class="card-header">
+      <h2>About This Simulation</h2>
+      <div class="meta">15-20 minutes</div>
+    </div>
+
+    <p style="font-size: 14px; margin-bottom: 16px;">
+      This simulation invites you to analyse technology not as a neutral tool, but as a <strong>political object</strong>
+      governed through institutions, markets, and norms. You will compare how different states exercise technological
+      power and navigate a decision scenario that reveals the tensions between capability, control, and legitimacy.
+    </p>
+
+    <div class="intro-grid">
+      <div class="intro-card">
+        <h3><span style="color: var(--capability);">1.</span> Compare States</h3>
+        <p>
+          Examine six states from the Global North and South. Each has a distinct technological profile shaped by
+          R&D investment, digital infrastructure, regulatory frameworks, and international positioning. Use the
+          three-lens framework to analyse how technological power manifests differently across contexts.
+        </p>
+      </div>
+      <div class="intro-card">
+        <h3><span style="color: var(--control);">2.</span> Navigate a Decision</h3>
+        <p>
+          Take on the role of a state's technology policy team facing a critical decision. Each option involves
+          trade-offs between building capability, maintaining control, and preserving legitimacy. Your choices
+          reveal how institutions govern access and authorise action.
+        </p>
+      </div>
+      <div class="intro-card">
+        <h3><span style="color: var(--legitimacy);">3.</span> Analyse Outcomes</h3>
+        <p>
+          See how your decisions affect your state's position across all three dimensions. Discover why
+          technological capability does not translate uniformly into political influence, and how institutional
+          constraints shape what actions appear legitimate.
+        </p>
+      </div>
+      <div class="intro-card">
+        <h3><span style="color: var(--muted);">4.</span> Reflect & Debrief</h3>
+        <p>
+          Engage with structured reflection prompts aligned with the course's learning objectives. Consider how
+          different states would face the same scenario differently, and what this reveals about power, authority,
+          and interdependence in contemporary global politics.
+        </p>
+      </div>
+    </div>
+
+    <div class="learning-objectives">
+      <h4>Learning Objectives</h4>
+      <ul>
+        <li>Analyse technology as a source of power, constraint, and political authority</li>
+        <li>Compare how different states exercise technological power across regions</li>
+        <li>Apply qualitative and quantitative indicators to assess technological leverage</li>
+        <li>Critically evaluate claims about dominance, dependence, and autonomy</li>
+      </ul>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="startBtn">Begin Simulation</button>
+    </div>
+  </section>
+
+  <!-- COMPARE STATES SECTION -->
+  <section id="compare" class="card hidden">
+    <div class="card-header">
+      <h2>State Profiles: Technological Leverage in Comparative Perspective</h2>
+      <div class="meta">Select a state to examine its profile</div>
+    </div>
+
+    <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">
+      Each state represents a different configuration of technological power. Compare indicators across
+      capability (technical capacity), control (governance reach), and legitimacy (normative authority).
+    </p>
+
+    <div class="states-grid" id="statesGrid">
+      <!-- States populated by JS -->
+    </div>
+
+    <!-- State Detail Panel -->
+    <div id="stateDetail" class="hidden" style="margin-top: 20px;">
+      <div class="scenario-box">
+        <div class="scenario-tag" id="detailStateName">State</div>
+        <p class="scenario-context" id="detailStateDesc"></p>
+
+        <div class="state-profile">
+          <div class="profile-section">
+            <h4>Capability Indicators</h4>
+            <ul class="profile-list" id="capabilityList"></ul>
+          </div>
+          <div class="profile-section">
+            <h4>Control Indicators</h4>
+            <ul class="profile-list" id="controlList"></ul>
+          </div>
+          <div class="profile-section">
+            <h4>Legitimacy Indicators</h4>
+            <ul class="profile-list" id="legitimacyList"></ul>
+          </div>
+          <div class="profile-section">
+            <h4>Key Characteristics</h4>
+            <ul class="profile-list" id="characteristicsList"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-secondary" id="compareAllBtn">View Comparison Table</button>
+      <button class="btn btn-primary" id="toScenarioBtn">Proceed to Decision Scenario</button>
+    </div>
+
+    <!-- Comparison Table Modal -->
+    <div id="comparisonTable" class="hidden" style="margin-top: 20px;">
+      <h3 style="font-size: 15px; margin-bottom: 12px;">Comparative Indicators</h3>
+      <div class="comparison-header">
+        <div>State</div>
+        <div style="color: var(--capability);">Capability</div>
+        <div style="color: var(--control);">Control</div>
+        <div style="color: var(--legitimacy);">Legitimacy</div>
+      </div>
+      <div id="comparisonRows"></div>
+    </div>
+  </section>
+
+  <!-- SCENARIO SECTION -->
+  <section id="scenario" class="card hidden">
+    <div class="card-header">
+      <h2>Decision Scenario</h2>
+      <div class="meta" id="scenarioMeta">Scenario 1 of 3</div>
+    </div>
+
+    <div class="progress-bar" id="progressBar">
+      <div class="progress-step current"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+    </div>
+
+    <!-- State Selection for Scenario -->
+    <div id="stateSelectPrompt" style="margin-bottom: 16px;">
+      <p style="font-size: 14px; margin-bottom: 12px;">
+        <strong>Select your state:</strong> Choose which state's perspective you will adopt for this scenario.
+      </p>
+      <div class="states-grid" id="scenarioStateSelect" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+        <!-- Mini state cards populated by JS -->
+      </div>
+    </div>
+
+    <!-- Scenario Content -->
+    <div id="scenarioContent" class="hidden">
+      <div class="scenario-box">
+        <div class="scenario-tag" id="scenarioTag">Scenario</div>
+        <h3 class="scenario-title" id="scenarioTitle"></h3>
+        <p class="scenario-context" id="scenarioContext"></p>
+
+        <div class="scenario-stakes">
+          <div class="stake-item capability">
+            <h4>Capability at Stake</h4>
+            <p id="stakeCapability"></p>
+          </div>
+          <div class="stake-item control">
+            <h4>Control at Stake</h4>
+            <p id="stakeControl"></p>
+          </div>
+          <div class="stake-item legitimacy">
+            <h4>Legitimacy at Stake</h4>
+            <p id="stakeLegitimacy"></p>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size: 15px; margin: 20px 0 12px;">Your Options</h3>
+      <div class="options-grid" id="optionsGrid">
+        <!-- Options populated by JS -->
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="commitDecisionBtn" disabled>Commit Decision</button>
+      </div>
+
+      <!-- Outcome Panel -->
+      <div id="outcomePanel" class="outcome-panel hidden">
+        <h3>Outcome Analysis</h3>
+        <div class="outcome-grid">
+          <div class="outcome-item capability">
+            <div class="label">Capability</div>
+            <div class="change" id="outcomeCapability">+0</div>
+          </div>
+          <div class="outcome-item control">
+            <div class="label">Control</div>
+            <div class="change" id="outcomeControl">+0</div>
+          </div>
+          <div class="outcome-item legitimacy">
+            <div class="label">Legitimacy</div>
+            <div class="change" id="outcomeLegitimacy">+0</div>
+          </div>
+        </div>
+        <div class="outcome-narrative" id="outcomeNarrative"></div>
+        <div class="actions">
+          <button class="btn btn-primary" id="nextScenarioBtn">Next Scenario</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEBRIEF SECTION -->
+  <section id="debrief" class="card hidden">
+    <div class="card-header">
+      <h2>Simulation Debrief</h2>
+      <div class="meta" id="debriefMeta">Session Complete</div>
+    </div>
+
+    <div id="debriefSummary">
+      <h3 style="font-size: 15px; margin-bottom: 12px;">Your Decision Summary</h3>
+      <table class="summary-table" id="summaryTable">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Your State</th>
+            <th>Decision</th>
+            <th style="color: var(--capability);">Cap.</th>
+            <th style="color: var(--control);">Ctrl.</th>
+            <th style="color: var(--legitimacy);">Leg.</th>
+          </tr>
+        </thead>
+        <tbody id="summaryBody"></tbody>
+      </table>
+
+      <div style="margin-top: 20px; padding: 16px; background: #f1f5f9; border-radius: 8px;">
+        <h4 style="margin: 0 0 8px; font-size: 14px;">Final Position</h4>
+        <p style="margin: 0; font-size: 14px;" id="finalPosition"></p>
+      </div>
+    </div>
+
+    <div class="debrief-grid">
+      <div class="debrief-card">
+        <h4 style="color: var(--capability);">On Capability</h4>
+        <ul>
+          <li>Where did technical capacity translate into political influence?</li>
+          <li>What constraints limited the exercise of technological power?</li>
+          <li>How did infrastructure and innovation interact with governance?</li>
         </ul>
-    </nav>
+      </div>
+      <div class="debrief-card">
+        <h4 style="color: var(--control);">On Control</h4>
+        <ul>
+          <li>How did institutional frameworks shape available options?</li>
+          <li>Where did regulatory power substitute for technical capability?</li>
+          <li>What role did alliances and dependencies play?</li>
+        </ul>
+      </div>
+      <div class="debrief-card">
+        <h4 style="color: var(--legitimacy);">On Legitimacy</h4>
+        <ul>
+          <li>Which actions appeared legitimate and to whom?</li>
+          <li>How did domestic and international audiences differ?</li>
+          <li>What normative claims justified the exercise of power?</li>
+        </ul>
+      </div>
+      <div class="debrief-card">
+        <h4>Comparative Questions</h4>
+        <ul>
+          <li>How would a different state have faced this scenario?</li>
+          <li>What does uneven leverage reveal about global tech governance?</li>
+          <li>Why doesn't capability alone determine outcomes?</li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- ═══════════ HERO ═══════════ -->
-    <section class="hero" id="home">
-        <div class="hero-grid">
-            <div class="hero-text">
-                <div class="hero-label">Scholar · Practitioner · Public Intellectual</div>
-                <h1>How states authorise power through <em>intelligence</em> and <em>technology</em></h1>
-                <p class="hero-description">
-                    I study the institutions, discourses, and technologies through which states project and legitimise power — and bring that research to classrooms, governments, and millions of viewers across the Arab world.
-                </p>
-                <div class="hero-meta">
-                    <span><span class="dot"></span> Assistant Professor, Doha Institute for Graduate Studies</span>
-                    <span><span class="dot"></span> Honorary Research Fellow, University of Exeter</span>
-                    <span><span class="dot"></span> Arabic · English · Kurdish</span>
-                </div>
-                <a href="Seloom_CV.pdf" download style="display:inline-block;margin-top:1.5rem;font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--bone);background:var(--ink);padding:0.75rem 1.5rem;text-decoration:none;transition:opacity 0.3s;">Download CV ↓</a>
-            </div>
-            <div class="hero-visual">
-                <div class="portrait-frame">
-                    <img src="photo.jpg" alt="Dr. Muhanad Seloom" style="width:100%;height:100%;object-fit:cover;">
-                </div>
-            </div>
+    <div class="actions">
+      <button class="btn btn-secondary" id="downloadResultsBtn">Download Results (CSV)</button>
+      <button class="btn btn-ghost" id="restartBtn">Restart Simulation</button>
+    </div>
+  </section>
+</main>
+
+<script>
+// ============ DATA ============
+
+const STATES = [
+  {
+    id: 'usa',
+    name: 'United States',
+    flag: '🇺🇸',
+    region: 'Global North',
+    description: 'The United States possesses unparalleled technological capability through its dominant tech firms, research universities, and innovation ecosystem. Control operates primarily through private sector dominance and alliance networks rather than direct state regulation. Legitimacy is contested: domestic debates over Big Tech power and international concerns about surveillance and extraterritorial reach complicate its normative authority.',
+    capability: 92,
+    control: 78,
+    legitimacy: 65,
+    indicators: {
+      capability: [
+        { name: 'R&D Spending (% GDP)', value: '3.5%' },
+        { name: 'Global Tech Firms HQ', value: '7 of top 10' },
+        { name: 'AI Research Output', value: 'Highest' },
+        { name: 'Cloud Infrastructure', value: 'Dominant' }
+      ],
+      control: [
+        { name: 'Platform Governance', value: 'Firm-led' },
+        { name: 'Data Regulation', value: 'Fragmented' },
+        { name: 'Export Controls', value: 'Extensive' },
+        { name: 'Alliance Networks', value: 'Five Eyes+' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Trust', value: 'Contested' },
+        { name: 'International Standing', value: 'Mixed' },
+        { name: 'Multilateral Engagement', value: 'Selective' },
+        { name: 'Normative Claims', value: 'Innovation/Freedom' }
+      ]
+    },
+    characteristics: [
+      'Platform power concentrated in private firms',
+      'Extraterritorial regulatory reach via market access',
+      'Innovation ecosystem advantage',
+      'Alliance dependencies create leverage'
+    ]
+  },
+  {
+    id: 'china',
+    name: 'China',
+    flag: '🇨🇳',
+    region: 'Global North/South Bridge',
+    description: 'China has rapidly built technological capability through state-directed investment, indigenous innovation policies, and scale advantages. Control is highly centralised through party-state institutions that govern data, platforms, and firms. Legitimacy operates differently across audiences: strong domestic performance legitimacy but significant international concerns about surveillance, standards, and geopolitical ambitions.',
+    capability: 88,
+    control: 95,
+    legitimacy: 45,
+    indicators: {
+      capability: [
+        { name: 'R&D Spending (% GDP)', value: '2.4%' },
+        { name: 'Manufacturing Scale', value: 'Dominant' },
+        { name: '5G/6G Development', value: 'Leading' },
+        { name: 'AI Applications', value: 'Extensive' }
+      ],
+      control: [
+        { name: 'Platform Governance', value: 'State-directed' },
+        { name: 'Data Regulation', value: 'Centralised' },
+        { name: 'Tech Firm Relations', value: 'Subordinate' },
+        { name: 'Great Firewall', value: 'Comprehensive' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Trust', value: 'Performance-based' },
+        { name: 'International Standing', value: 'Contested' },
+        { name: 'BRI Tech Provision', value: 'Expanding' },
+        { name: 'Normative Claims', value: 'Sovereignty/Development' }
+      ]
+    },
+    characteristics: [
+      'State-directed technological development',
+      'Scale advantages in manufacturing and data',
+      'Digital Silk Road extending influence',
+      'Legitimacy deficit in Western markets'
+    ]
+  },
+  {
+    id: 'eu',
+    name: 'European Union',
+    flag: '🇪🇺',
+    region: 'Global North',
+    description: 'The EU exercises technological power primarily through regulatory control rather than indigenous capability. The "Brussels Effect" extends its standards globally, but dependence on US platforms and Asian hardware limits autonomous action. Legitimacy is a core asset: the EU positions itself as a normative power promoting rights-based digital governance.',
+    capability: 62,
+    control: 85,
+    legitimacy: 82,
+    indicators: {
+      capability: [
+        { name: 'R&D Spending (% GDP)', value: '2.2%' },
+        { name: 'Platform Ownership', value: 'Limited' },
+        { name: 'Semiconductor Production', value: 'Dependent' },
+        { name: 'AI Research', value: 'Strong' }
+      ],
+      control: [
+        { name: 'GDPR Reach', value: 'Global standard' },
+        { name: 'DSA/DMA', value: 'Platform rules' },
+        { name: 'AI Act', value: 'First comprehensive' },
+        { name: 'Antitrust Action', value: 'Aggressive' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Trust', value: 'Moderate' },
+        { name: 'International Standing', value: 'High' },
+        { name: 'Standard-Setting', value: 'Influential' },
+        { name: 'Normative Claims', value: 'Rights/Privacy' }
+      ]
+    },
+    characteristics: [
+      'Regulatory power exceeds technical capability',
+      '"Brussels Effect" extends standards globally',
+      'Dependent on external platforms and hardware',
+      'Normative authority as strategic asset'
+    ]
+  },
+  {
+    id: 'india',
+    name: 'India',
+    flag: '🇮🇳',
+    region: 'Global South',
+    description: 'India combines growing technological capability with contested control mechanisms. Its massive digital public infrastructure (UPI, Aadhaar) demonstrates state capacity, while its IT services sector provides global reach. Control is evolving rapidly through data localisation and platform regulation. Legitimacy draws on democratic credentials and Global South leadership.',
+    capability: 58,
+    control: 55,
+    legitimacy: 68,
+    indicators: {
+      capability: [
+        { name: 'IT Services Export', value: '$194B' },
+        { name: 'Digital Public Infra', value: 'Advanced' },
+        { name: 'Startup Ecosystem', value: 'Growing' },
+        { name: 'Manufacturing', value: 'Emerging' }
+      ],
+      control: [
+        { name: 'Data Localisation', value: 'Expanding' },
+        { name: 'Platform Regulation', value: 'Evolving' },
+        { name: 'Digital India Stack', value: 'Comprehensive' },
+        { name: 'Tech Firm Relations', value: 'Negotiated' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Trust', value: 'Mixed' },
+        { name: 'Democratic Credentials', value: 'Significant' },
+        { name: 'Global South Voice', value: 'Prominent' },
+        { name: 'Normative Claims', value: 'Digital inclusion' }
+      ]
+    },
+    characteristics: [
+      'Scale advantage: 1.4B digital users',
+      'Digital public infrastructure model',
+      'Navigating between US and China',
+      'Democratic legitimacy as differentiator'
+    ]
+  },
+  {
+    id: 'uae',
+    name: 'UAE',
+    flag: '🇦🇪',
+    region: 'Global South / Gulf',
+    description: 'The UAE exemplifies small-state digital strategy: leveraging sovereign wealth to acquire capability, positioning as a regional tech hub, and balancing between global powers. Control is highly centralised but market-friendly. Legitimacy rests on modernisation narratives and positioning as a neutral connector between East and West.',
+    capability: 48,
+    control: 72,
+    legitimacy: 55,
+    indicators: {
+      capability: [
+        { name: 'R&D Investment', value: 'High growth' },
+        { name: 'AI National Strategy', value: 'Ambitious' },
+        { name: 'Space Programme', value: 'Active' },
+        { name: 'Indigenous Tech', value: 'Limited' }
+      ],
+      control: [
+        { name: 'Data Governance', value: 'Centralised' },
+        { name: 'Tech Procurement', value: 'Strategic' },
+        { name: 'Free Zone Model', value: 'Extensive' },
+        { name: 'Alliance Position', value: 'Multi-aligned' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Standing', value: 'High' },
+        { name: 'Regional Influence', value: 'Significant' },
+        { name: 'Global Hub Status', value: 'Growing' },
+        { name: 'Normative Claims', value: 'Modernisation' }
+      ]
+    },
+    characteristics: [
+      'Sovereign wealth enables tech acquisition',
+      'Hub strategy: connecting flows',
+      'Multi-alignment between powers',
+      'Authoritarian modernisation model'
+    ]
+  },
+  {
+    id: 'nigeria',
+    name: 'Nigeria',
+    flag: '🇳🇬',
+    region: 'Global South / Africa',
+    description: 'Nigeria represents the opportunities and constraints facing large developing states. Growing tech capability through its vibrant startup ecosystem contrasts with limited state control over digital infrastructure. Legitimacy is complicated by governance challenges but bolstered by demographic weight and cultural influence across Africa.',
+    capability: 32,
+    control: 28,
+    legitimacy: 52,
+    indicators: {
+      capability: [
+        { name: 'Tech Startup Funding', value: 'Africa\'s highest' },
+        { name: 'Digital Infrastructure', value: 'Developing' },
+        { name: 'Developer Talent', value: 'Growing' },
+        { name: 'Manufacturing', value: 'Limited' }
+      ],
+      control: [
+        { name: 'Platform Regulation', value: 'Weak' },
+        { name: 'Data Governance', value: 'Nascent' },
+        { name: 'Infrastructure Ownership', value: 'Foreign-dependent' },
+        { name: 'Policy Capacity', value: 'Constrained' }
+      ],
+      legitimacy: [
+        { name: 'Domestic Trust', value: 'Low' },
+        { name: 'Regional Influence', value: 'Significant' },
+        { name: 'Demographic Weight', value: 'Major' },
+        { name: 'Normative Claims', value: 'Digital access' }
+      ]
+    },
+    characteristics: [
+      'Vibrant private tech ecosystem',
+      'State capacity constraints',
+      'Infrastructure dependency on external actors',
+      'Demographic dividend potential'
+    ]
+  }
+];
+
+const SCENARIOS = [
+  {
+    id: 1,
+    tag: 'Platform Governance Crisis',
+    title: 'A Major Platform Threatens to Exit Your Market',
+    context: 'A dominant global social media platform has announced it may cease operations in your state due to new content moderation requirements. The platform has 80 million users domestically and is a key channel for commerce, news, and political discourse. Civil society groups support the regulations, while business interests warn of economic disruption. Other states are watching how you respond.',
+    stakes: {
+      capability: 'Loss of platform infrastructure affects digital commerce and communication capacity',
+      control: 'Backing down signals regulatory weakness; standing firm tests enforcement capacity',
+      legitimacy: 'Domestic audiences demand sovereignty; international observers assess rule of law'
+    },
+    options: [
+      {
+        id: 'a',
+        label: 'Option A',
+        title: 'Enforce Regulations Fully',
+        description: 'Maintain your regulatory position and allow the platform to exit if it refuses compliance. Signal that domestic law applies to all operators.',
+        impacts: [
+          { type: 'negative', text: 'Capability -10: Infrastructure gap' },
+          { type: 'positive', text: 'Control +15: Regulatory credibility' },
+          { type: 'neutral', text: 'Legitimacy +5: Sovereignty assertion' }
+        ],
+        changes: { capability: -10, control: 15, legitimacy: 5 },
+        narrative: 'The platform exits. Short-term disruption is significant as users migrate to alternatives. However, your regulatory credibility increases, and domestic competitors begin to fill the gap. International observers note your willingness to enforce sovereign rules, though some business groups criticise the economic cost.'
+      },
+      {
+        id: 'b',
+        label: 'Option B',
+        title: 'Negotiate a Compromise',
+        description: 'Engage in extended negotiations, offering implementation flexibility in exchange for partial compliance and continued service.',
+        impacts: [
+          { type: 'neutral', text: 'Capability +5: Service continuity' },
+          { type: 'negative', text: 'Control -5: Perceived weakness' },
+          { type: 'neutral', text: 'Legitimacy 0: Mixed signals' }
+        ],
+        changes: { capability: 5, control: -5, legitimacy: 0 },
+        narrative: 'Negotiations produce a face-saving compromise. The platform remains with modified practices, but both sides interpret the outcome differently. Your regulatory framework appears flexible, which may invite further challenges. Users retain access, preserving economic activity.'
+      },
+      {
+        id: 'c',
+        label: 'Option C',
+        title: 'Suspend Enforcement',
+        description: 'Quietly delay implementation of the regulations, citing need for further consultation. Allow the platform to continue operating under existing terms.',
+        impacts: [
+          { type: 'positive', text: 'Capability +10: No disruption' },
+          { type: 'negative', text: 'Control -15: Credibility loss' },
+          { type: 'negative', text: 'Legitimacy -10: Sovereignty questions' }
+        ],
+        changes: { capability: 10, control: -15, legitimacy: -10 },
+        narrative: 'The immediate crisis passes, but at significant cost. Your regulatory authority is diminished, and other platforms take note. Domestic critics argue you capitulated to corporate pressure. The underlying governance questions remain unresolved.'
+      }
+    ]
+  },
+  {
+    id: 2,
+    tag: 'AI Export Controls',
+    title: 'Allied State Requests AI Technology Transfer',
+    context: 'A close strategic partner requests access to advanced AI systems developed by your national research institutions and private sector. The technology has dual-use potential. Providing access would strengthen the alliance and generate revenue, but risks capability diffusion. A rival power is offering its own AI partnership to the requesting state.',
+    stakes: {
+      capability: 'Sharing may accelerate partner\'s capability while potentially eroding your advantage',
+      control: 'Transfer agreements require governance frameworks; monitoring compliance is difficult',
+      legitimacy: 'Alliance solidarity versus non-proliferation norms and domestic concerns'
+    },
+    options: [
+      {
+        id: 'a',
+        label: 'Option A',
+        title: 'Full Technology Partnership',
+        description: 'Agree to comprehensive AI cooperation including advanced systems, joint research, and capability building. Deepen alliance integration.',
+        impacts: [
+          { type: 'negative', text: 'Capability -5: Advantage diffusion' },
+          { type: 'positive', text: 'Control +10: Alliance framework' },
+          { type: 'positive', text: 'Legitimacy +10: Partnership trust' }
+        ],
+        changes: { capability: -5, control: 10, legitimacy: 10 },
+        narrative: 'The partnership strengthens alliance bonds significantly. Joint governance frameworks create new mechanisms for coordination. Your partner chooses your ecosystem over the rival\'s offer. However, capability diffusion begins, and maintaining technological edge requires continued innovation investment.'
+      },
+      {
+        id: 'b',
+        label: 'Option B',
+        title: 'Tiered Access with Conditions',
+        description: 'Offer access to some AI systems with strict end-use monitoring, technology safeguards, and limitations on the most sensitive capabilities.',
+        impacts: [
+          { type: 'neutral', text: 'Capability 0: Controlled sharing' },
+          { type: 'neutral', text: 'Control +5: Conditional framework' },
+          { type: 'neutral', text: 'Legitimacy +5: Balanced approach' }
+        ],
+        changes: { capability: 0, control: 5, legitimacy: 5 },
+        narrative: 'Your partner accepts the tiered arrangement, though some frustration exists about limitations. The governance framework provides oversight mechanisms. You maintain your edge in the most advanced systems while demonstrating alliance commitment.'
+      },
+      {
+        id: 'c',
+        label: 'Option C',
+        title: 'Decline the Request',
+        description: 'Refuse the technology transfer citing security concerns and non-proliferation commitments. Offer alternative cooperation in less sensitive areas.',
+        impacts: [
+          { type: 'positive', text: 'Capability +10: Advantage preserved' },
+          { type: 'negative', text: 'Control -10: Alliance strain' },
+          { type: 'negative', text: 'Legitimacy -5: Partnership damage' }
+        ],
+        changes: { capability: 10, control: -10, legitimacy: -5 },
+        narrative: 'Your technological advantage is preserved, but alliance relations suffer. Your partner, feeling rebuffed, begins exploring the rival power\'s offer more seriously. Questions arise about the reliability of your partnerships. Domestic security hawks approve, but foreign ministry officials warn of strategic costs.'
+      }
+    ]
+  },
+  {
+    id: 3,
+    tag: 'Digital Infrastructure Crisis',
+    title: 'Critical Infrastructure Vulnerable to Foreign Control',
+    context: 'An audit reveals that 70% of your state\'s telecommunications infrastructure relies on equipment from a foreign provider now subject to sanctions by a major ally. Removing this equipment would cost billions and take years. Your ally is pressuring immediate action. The equipment provider offers security guarantees and threatens legal action if excluded.',
+    stakes: {
+      capability: 'Infrastructure replacement affects network quality and digital services',
+      control: 'Dependency on foreign infrastructure limits sovereign control over critical systems',
+      legitimacy: 'Alliance obligations versus economic pragmatism and legal commitments'
+    },
+    options: [
+      {
+        id: 'a',
+        label: 'Option A',
+        title: 'Accelerated Replacement',
+        description: 'Commit to rapid infrastructure replacement despite costs. Align with ally demands and reduce dependency on the contested provider.',
+        impacts: [
+          { type: 'negative', text: 'Capability -15: Transition disruption' },
+          { type: 'positive', text: 'Control +15: Reduced dependency' },
+          { type: 'positive', text: 'Legitimacy +10: Alliance alignment' }
+        ],
+        changes: { capability: -15, control: 15, legitimacy: 10 },
+        narrative: 'The replacement programme strains budgets and causes service disruptions. However, your ally provides support and your infrastructure becomes less vulnerable to foreign leverage. The contested provider pursues legal action, creating ongoing friction. Long-term, your digital sovereignty increases.'
+      },
+      {
+        id: 'b',
+        label: 'Option B',
+        title: 'Gradual Transition',
+        description: 'Announce a multi-year phase-out plan. New installations use alternative providers while existing equipment is replaced on natural upgrade cycles.',
+        impacts: [
+          { type: 'neutral', text: 'Capability -5: Managed transition' },
+          { type: 'neutral', text: 'Control +5: Incremental improvement' },
+          { type: 'neutral', text: 'Legitimacy 0: Partial satisfaction' }
+        ],
+        changes: { capability: -5, control: 5, legitimacy: 0 },
+        narrative: 'The gradual approach limits disruption but satisfies no one fully. Your ally questions your commitment; the contested provider challenges the policy. You maintain operational capability while slowly reducing dependency. The transition creates a prolonged period of uncertainty.'
+      },
+      {
+        id: 'c',
+        label: 'Option C',
+        title: 'Maintain Current Infrastructure',
+        description: 'Resist pressure to remove existing equipment. Implement enhanced monitoring and security measures while avoiding costly replacement.',
+        impacts: [
+          { type: 'positive', text: 'Capability +5: No disruption' },
+          { type: 'negative', text: 'Control -10: Dependency remains' },
+          { type: 'negative', text: 'Legitimacy -15: Alliance damage' }
+        ],
+        changes: { capability: 5, control: -10, legitimacy: -15 },
+        narrative: 'Your networks continue operating smoothly, but alliance relations deteriorate significantly. Your ally implements information-sharing restrictions, affecting intelligence cooperation. The contested provider views this as a victory, potentially increasing your vulnerability to future leverage. Domestic critics question your strategic alignment.'
+      }
+    ]
+  }
+];
+
+// ============ STATE ============
+
+let currentTab = 'intro';
+let selectedState = null;
+let selectedScenarioState = null;
+let currentScenario = 0;
+let selectedOption = null;
+let decisionHistory = [];
+let cumulativeScores = { capability: 0, control: 0, legitimacy: 0 };
+
+// ============ DOM ELEMENTS ============
+
+const tabs = document.querySelectorAll('.tab');
+const sections = {
+  intro: document.getElementById('intro'),
+  compare: document.getElementById('compare'),
+  scenario: document.getElementById('scenario'),
+  debrief: document.getElementById('debrief')
+};
+
+// ============ FUNCTIONS ============
+
+function switchTab(tabId) {
+  currentTab = tabId;
+  tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+  Object.entries(sections).forEach(([id, el]) => {
+    el.classList.toggle('hidden', id !== tabId);
+  });
+}
+
+function renderStateCards() {
+  const grid = document.getElementById('statesGrid');
+  grid.innerHTML = STATES.map(state => `
+    <div class="state-card" data-state="${state.id}">
+      <div class="flag">${state.flag}</div>
+      <h3>${state.name}</h3>
+      <div class="region">${state.region}</div>
+      <div class="indicator-row">
+        <div class="indicator-label">Capability</div>
+        <div class="indicator-bar">
+          <div class="indicator-fill capability" style="width: ${state.capability}%"></div>
         </div>
-    </section>
-
-    <!-- ═══════════ ABOUT ═══════════ -->
-    <section class="about-section" id="about">
-        <div class="section-inner">
-            <div class="section-header">
-                
-                <h2 class="section-title">About</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="about-content fade-in">
-                <div class="about-text">
-                    <p>
-                        I am an Assistant Professor of International Politics and Security at the Doha Institute for Graduate Studies and a researcher at the Arab Center for Research and Policy Studies (ACRPS). I also hold an Honorary Research Fellowship at the University of Exeter's Institute of Arab and Islamic Studies.
-                    </p>
-                    <p>
-                        My scholarship operates at the intersection of intelligence studies, security governance, and the geopolitics of technology. I examine how states construct, deploy, and legitimise covert power — and how emerging technologies are reshaping that landscape particularly for small and medium states.
-                    </p>
-                    <p>
-                        Before academia, I served in practitioner roles with the U.S. Department of State, the UK Ministry of Defence, and other governmental bodies — experience that grounds my research in the operational realities of security institutions and informs a distinctive bridging of theory and practice.
-                    </p>
-                    <p>
-                        As a trilingual scholar (Arabic, English, Kurdish), I bring research to diverse publics through regular commentary on Al Jazeera, CNN, BBC, and Arabic-language television, reaching millions of viewers.
-                    </p>
-                </div>
-                <div class="about-sidebar">
-                    <div class="sidebar-block">
-                        <h4>Affiliations</h4>
-                        <ul>
-                            <li>Doha Institute for Graduate Studies</li>
-                            <li>Arab Center for Research & Policy Studies</li>
-                            <li>University of Exeter (Hon. Fellow)</li>
-                        </ul>
-                    </div>
-                    <div class="sidebar-block">
-                        <h4>Editorial</h4>
-                        <p>Associate Editor, Strategic Studies and Political Research Journal, University of Tlemcen</p>
-                    </div>
-                    <div class="sidebar-block">
-                        <h4>Languages</h4>
-                        <ul>
-                            <li>Arabic (native)</li>
-                            <li>English (native-level)</li>
-                            <li>Kurdish (native)</li>
-                        </ul>
-                    </div>
-                    <div class="sidebar-block">
-                        <h4>Education</h4>
-                        <ul>
-                            <li>Ph.D. Ethno-Political Studies — University of Exeter</li>
-                            <li>M.A. Comparative Criminology (Distinction) — Bangor University</li>
-                            <li>B.A. Translation &amp; Political Science (Distinction) — University of Al-Mustansiryah, Baghdad</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="indicator-value">${state.capability}</div>
+      </div>
+      <div class="indicator-row">
+        <div class="indicator-label">Control</div>
+        <div class="indicator-bar">
+          <div class="indicator-fill control" style="width: ${state.control}%"></div>
         </div>
-    </section>
-
-    <!-- ═══════════ RESEARCH ═══════════ -->
-    <section id="research">
-        <div class="section-inner">
-            <div class="section-header">
-                
-                <h2 class="section-title">Research</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="pillars-grid fade-in">
-                <div class="pillar-card">
-                    <div class="pillar-icon">🔍</div>
-                    <h3>Intelligence &amp; Security Institutions</h3>
-                    <p>
-                        Historical and institutional analysis of intelligence apparatuses, with emphasis on under-explored entities in the Middle East and North Africa. My forthcoming Cambridge University Press monograph traces the covert history of Iraq's intelligence system.
-                    </p>
-                    <div class="pillar-keywords">
-                        <span>Iraq</span>
-                        <span>Intelligence History</span>
-                        <span>MENA</span>
-                        <span>Covert Power</span>
-                    </div>
-                </div>
-                <div class="pillar-card">
-                    <div class="pillar-icon">🏷️</div>
-                    <h3>Securitisation &amp; Political Authority</h3>
-                    <p>
-                        How states deploy security labels — particularly the "terrorist" designation — to define legitimacy, suppress dissent, and shape conflict dynamics. My Routledge monograph examines this through the PKK case in Türkiye.
-                    </p>
-                    <div class="pillar-keywords">
-                        <span>Labelling</span>
-                        <span>PKK</span>
-                        <span>Terrorism Discourse</span>
-                        <span>Conflict</span>
-                    </div>
-                </div>
-                <div class="pillar-card">
-                    <div class="pillar-icon">⚡</div>
-                    <h3>Technology, Security &amp; State Power</h3>
-                    <p>
-                        Governance of AI, cyber power, and digital sovereignty — with particular focus on how small and medium states develop digital offset strategies. Exploring algorithmic warfare, surveillance capitalism, and tech-enabled state control.
-                    </p>
-                    <div class="pillar-keywords">
-                        <span>AI Governance</span>
-                        <span>Cyber Power</span>
-                        <span>Digital Sovereignty</span>
-                        <span>Offset Strategy</span>
-                    </div>
-                </div>
-            </div>
+        <div class="indicator-value">${state.control}</div>
+      </div>
+      <div class="indicator-row">
+        <div class="indicator-label">Legitimacy</div>
+        <div class="indicator-bar">
+          <div class="indicator-fill legitimacy" style="width: ${state.legitimacy}%"></div>
         </div>
-    </section>
+        <div class="indicator-value">${state.legitimacy}</div>
+      </div>
+    </div>
+  `).join('');
 
-    <!-- ═══════════ PUBLICATIONS ═══════════ -->
-    <section class="publications-section" id="publications">
-        <div class="section-inner">
-            <div class="section-header">
-                
-                <h2 class="section-title">Selected Publications</h2>
-                <div class="section-line"></div>
-            </div>
+  grid.querySelectorAll('.state-card').forEach(card => {
+    card.addEventListener('click', () => selectState(card.dataset.state));
+  });
+}
 
-            <div class="pub-category fade-in">
-                <div class="pub-category-title">Authored Books</div>
-                <div class="pub-item">
-                    <span class="pub-year">2025</span>
-                    <div class="pub-details">
-                        <h4>Labelling Ethno-Political Groups as Terrorists: The Case of the PKK in Türkiye</h4>
-                        <div class="pub-venue">Routledge</div>
-                    </div>
-                    <a href="https://www.routledge.com/Labelling-Ethno-Political-Groups-as-Terrorists-The-Case-of-the-PKK-in-Turkiye/Seloom/p/book/9781041109006" class="pub-link" target="_blank" rel="noopener">View →</a>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">Forthc.</span>
-                    <div class="pub-details">
-                        <h4>The History and Politics of Iraqi Intelligence, 1915–2025</h4>
-                        <div class="pub-venue">Cambridge University Press</div>
-                        <div class="pub-note">Under review</div>
-                    </div>
-                </div>
-            </div>
+function selectState(stateId) {
+  selectedState = STATES.find(s => s.id === stateId);
 
-            <div class="pub-category fade-in">
-                <div class="pub-category-title">Edited Books</div>
-                <div class="pub-item">
-                    <span class="pub-year">Forthc.</span>
-                    <div class="pub-details">
-                        <h4>Militias to Armies: Combat Adaptations and Military Transformations of Armed Non-State Actors</h4>
-                        <div class="pub-venue">Edinburgh University Press (co-edited with Omar Ashour)</div>
-                        <div class="pub-note">Under review</div>
-                    </div>
-                </div>
-            </div>
+  document.querySelectorAll('#statesGrid .state-card').forEach(card => {
+    card.classList.toggle('selected', card.dataset.state === stateId);
+  });
 
-            <div class="pub-category fade-in">
-                <div class="pub-category-title">Peer-Reviewed Journal Articles</div>
-                <div class="pub-item">
-                    <span class="pub-year">2026</span>
-                    <div class="pub-details">
-                        <h4>Securitising AI: Routine Exceptionality and Digital Governance in the Gulf</h4>
-                        <div class="pub-venue">AI Ethics, 6, 35</div>
-                    </div>
-                    <a href="https://link.springer.com/article/10.1007/s43681-025-00850-1" class="pub-link" target="_blank" rel="noopener">Read →</a>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2026</span>
-                    <div class="pub-details">
-                        <h4>The Intelligence Crisis in Iraq: Political Fragmentation and the Challenge of Reform</h4>
-                        <div class="pub-venue">Intelligence and National Security</div>
-                    </div>
-                    <a href="https://www.tandfonline.com/doi/full/10.1080/02684527.2025.2599456" class="pub-link" target="_blank" rel="noopener">Read →</a>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2025</span>
-                    <div class="pub-details">
-                        <h4>Veiled Intentions: Hamas's Strategic Deception and Intelligence Success on 7 October 2023</h4>
-                        <div class="pub-venue">Intelligence and National Security</div>
-                    </div>
-                    <a href="https://doi.org/10.1080/02684527.2025.2576903" class="pub-link" target="_blank" rel="noopener">Read →</a>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2024</span>
-                    <div class="pub-details">
-                        <h4>Qatar's Security Strategy in the 2022 FIFA World Cup</h4>
-                        <div class="pub-venue">Journal of Security and Strategic Studies, 4(1)</div>
-                    </div>
-                    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4712971" class="pub-link" target="_blank" rel="noopener">Read →</a>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2021</span>
-                    <div class="pub-details">
-                        <h4>Policing the Coronavirus: Comparative Approaches</h4>
-                        <div class="pub-venue">Journal of Security and Strategic Studies, 3</div>
-                    </div>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2019</span>
-                    <div class="pub-details">
-                        <h4>The Practical Implications of Terrorist-Listing on Transitional Justice in Iraq</h4>
-                        <div class="pub-venue">Wolverhampton Law Journal, 2(1)</div>
-                    </div>
-                    <a href="https://www.wlv.ac.uk/media/departments/faculty-of-social-sciences/documents/wolverhampton-law-journal/edition-2/5.-Muhanad-Seloom.pdf" class="pub-link" target="_blank" rel="noopener">Read →</a>
-                </div>
-            </div>
+  const detail = document.getElementById('stateDetail');
+  detail.classList.remove('hidden');
 
-            <div class="pub-category fade-in">
-                <div class="pub-category-title">Book Chapters</div>
-                <div class="pub-item">
-                    <span class="pub-year">2024</span>
-                    <div class="pub-details">
-                        <h4>The Impact of Globalisation on Conflicts in the Middle East</h4>
-                        <div class="pub-venue">In I. Fraihat (Ed.), Analysis and Settlement of Conflicts in the Arab World. ACRPS</div>
-                    </div>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2024</span>
-                    <div class="pub-details">
-                        <h4>From Rivals to Allies: Iran's Evolving Role in Iraq's Geopolitics</h4>
-                        <div class="pub-venue">In S. Akbarzadeh &amp; H. Azizi (Eds.), Iran in the Middle East. Middle East Council on Global Affairs</div>
-                    </div>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">Forthc.</span>
-                    <div class="pub-details">
-                        <h4>Gender, Warfare, and Ideology: Analysing the Recruitment of Women in the YPJ</h4>
-                        <div class="pub-venue">In Militias to Armies. Edinburgh University Press</div>
-                        <div class="pub-note">Under review</div>
-                    </div>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">Forthc.</span>
-                    <div class="pub-details">
-                        <h4>Soft Power, Hard Problems: U.S. Intelligence Education in a Multipolar Gulf</h4>
-                        <div class="pub-venue">In S. Wright &amp; R. Miller (Eds.), The United States and the Gulf in an Era of Global Power Shifts. Springer</div>
-                        <div class="pub-note">Under review</div>
-                    </div>
-                </div>
-            </div>
+  document.getElementById('detailStateName').textContent = selectedState.name;
+  document.getElementById('detailStateDesc').textContent = selectedState.description;
 
-            <div class="pub-category fade-in">
-                <div class="pub-category-title">Selected Policy Papers &amp; Commentary</div>
-                <div class="pub-item">
-                    <span class="pub-year">2025</span>
-                    <div class="pub-details">
-                        <h4>Will Israel's Algorithmic Counterinsurgency Proliferate to the West?</h4>
-                        <div class="pub-venue">War on the Rocks</div>
-                    </div>
-                    <a href="https://warontherocks.com/2025/10/will-israels-algorithmic-counter-insurgency-proliferate-to-the-west/" class="pub-link" target="_blank" rel="noopener">Read →</a>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2025</span>
-                    <div class="pub-details">
-                        <h4>Review of Anthony King, "AI, Automation, and War: The Rise of a Military-Tech Complex"</h4>
-                        <div class="pub-venue">Hikama, 6(11), pp. 249–256</div>
-                    </div>
-                    <a href="https://hikama.dohainstitute.org/en/issue011/Pages/IssueHome.aspx" class="pub-link" target="_blank" rel="noopener">Read →</a>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2018</span>
-                    <div class="pub-details">
-                        <h4>An Unhappy Return: What the Iraqi Islamic Party Gave Up Gaining Power</h4>
-                        <div class="pub-venue">Carnegie Middle East Center</div>
-                    </div>
-                    <a href="https://carnegie-mec.org/2018/11/19/unhappy-return-what-iraqi-islamic-party-gave-up-to-gain-power-pub-77747" class="pub-link" target="_blank" rel="noopener">Read →</a>
-                </div>
-            </div>
+  const renderList = (listId, items) => {
+    document.getElementById(listId).innerHTML = items.map(item => `
+      <li><span>${item.name}</span><span class="profile-value">${item.value}</span></li>
+    `).join('');
+  };
 
-            <p style="text-align: center; margin-top: 2rem;">
-                <a href="https://scholar.google.co.uk/citations?user=f-GBFwIAAAAJ&hl=en" target="_blank" rel="noopener" class="pub-link" style="font-size: 0.75rem;">View full list on Google Scholar →</a>
-            </p>
-        </div>
-    </section>
+  renderList('capabilityList', selectedState.indicators.capability);
+  renderList('controlList', selectedState.indicators.control);
+  renderList('legitimacyList', selectedState.indicators.legitimacy);
 
-    <!-- ═══════════ MEDIA ═══════════ -->
-    <section id="media">
-        <div class="section-inner">
-            <div class="section-header">
-                
-                <h2 class="section-title">Media &amp; Commentary</h2>
-                <div class="section-line"></div>
-            </div>
+  document.getElementById('characteristicsList').innerHTML = selectedState.characteristics.map(c => `
+    <li><span>${c}</span></li>
+  `).join('');
+}
 
-            <div class="media-grid fade-in">
-                <div class="media-card">
-                    <div class="outlet">Al Jazeera English</div>
-                    <h4>Regular on-air analyst</h4>
-                    <p>Inside Story, news analysis, and opinion pieces on Middle East security, intelligence dynamics, Iran-US tensions, and the Syria transition.</p>
-                    <a href="https://www.aljazeera.com/author/muhanad-seloom" target="_blank" rel="noopener">View contributions →</a>
-                </div>
-                <div class="media-card">
-                    <div class="outlet">CNN International</div>
-                    <h4>Security analyst</h4>
-                    <p>Interviewed by Richard Quest on regional security developments including Israeli strikes and Gulf security architecture.</p>
-                </div>
-                <div class="media-card">
-                    <div class="outlet">Rotana · Khalejia TV · Al-Modifer</div>
-                    <h4>Arabic-language analysis</h4>
-                    <p>"In the Frame — Intelligence in International Politics" (2026) and regular appearances reaching 2M+ Arabic-speaking viewers on intelligence, security, and geopolitics.</p>
-                </div>
-                <div class="media-card">
-                    <div class="outlet">France 24 · BBC · TRT · Al-Araby TV</div>
-                    <h4>Cross-platform commentary</h4>
-                    <p>Documentaries, long-form interviews, and live analysis. Featured on the Albasheer Show (2024) and Al-Sharq Podcast on Iraqi militias. Op-eds in Al Jazeera English and multiple policy outlets.</p>
-                </div>
-            </div>
+function renderComparisonTable() {
+  const rows = document.getElementById('comparisonRows');
+  rows.innerHTML = STATES.map(state => `
+    <div class="comparison-row">
+      <div class="metric">${state.flag} ${state.name}</div>
+      <div>${state.capability}/100</div>
+      <div>${state.control}/100</div>
+      <div>${state.legitimacy}/100</div>
+    </div>
+  `).join('');
 
-            <!-- Featured Video Appearances -->
-            <div class="featured-media fade-in">
-                <h3>Featured Appearances</h3>
-                <div class="video-grid">
-                    <div class="video-card">
-                        <iframe src="https://www.youtube.com/embed/hwluKLZo65Y" title="الاستخبارات العالمية في الصورة – د.مهند سلوم" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-                        <div class="video-caption">
-                            <h4>Intelligence in the Frame — Dr. Muhanad Seloom</h4>
-                            <span>Al-Modifer · Arabic</span>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <iframe src="https://www.youtube.com/embed/WIJeXDWpTSo?start=437" title="Muhanad Seloom — Al Jazeera Analysis" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-                        <div class="video-caption">
-                            <h4>Al Jazeera English — Security Analysis</h4>
-                            <span>Al Jazeera English</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  document.getElementById('comparisonTable').classList.remove('hidden');
+}
 
-            <!-- Op-Eds & Written Analysis -->
-            <div class="featured-media fade-in">
-                <h3>Op-Eds &amp; Written Analysis</h3>
-                <div class="oped-list">
-                    <div class="oped-item">
-                        <span class="oped-date">Feb 2026</span>
-                        <div><a href="https://www.aljazeera.com/opinions/2026/2/8/iran-us-talks-in-muscat-bought-time-not-a-deal" target="_blank" rel="noopener">Iran-US Talks in Muscat Bought Time, Not a Deal</a><span class="oped-source">Al Jazeera English</span></div>
-                    </div>
-                    <div class="oped-item">
-                        <span class="oped-date">Oct 2025</span>
-                        <div><a href="https://warontherocks.com/2025/10/will-israels-algorithmic-counter-insurgency-proliferate-to-the-west/" target="_blank" rel="noopener">Will Israel's Algorithmic Counterinsurgency Proliferate to the West?</a><span class="oped-source">War on the Rocks</span></div>
-                    </div>
-                    <div class="oped-item">
-                        <span class="oped-date">Nov 2018</span>
-                        <div><a href="https://carnegie-mec.org/2018/11/19/unhappy-return-what-iraqi-islamic-party-gave-up-to-gain-power-pub-77747" target="_blank" rel="noopener">An Unhappy Return: What the Iraqi Islamic Party Gave Up Gaining Power</a><span class="oped-source">Carnegie Middle East Center</span></div>
-                    </div>
-                </div>
-            </div>
+function renderScenarioStateSelect() {
+  const grid = document.getElementById('scenarioStateSelect');
+  grid.innerHTML = STATES.map(state => `
+    <div class="state-card" data-state="${state.id}" style="padding: 12px;">
+      <div class="flag" style="font-size: 24px; margin-bottom: 4px;">${state.flag}</div>
+      <h3 style="font-size: 14px; margin: 0;">${state.name}</h3>
+    </div>
+  `).join('');
 
-            <div class="media-summary fade-in">
-                <div class="media-stat">
-                    <span class="stat-number">2M+</span>
-                    <span class="stat-label">TV Viewers</span>
-                </div>
-                <div class="media-stat">
-                    <span class="stat-number">18.5K</span>
-                    <span class="stat-label">X/Twitter</span>
-                </div>
-                <div class="media-stat">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Languages</span>
-                </div>
-                <div class="media-stat">
-                    <span class="stat-number">6+</span>
-                    <span class="stat-label">Networks</span>
-                </div>
-            </div>
+  grid.querySelectorAll('.state-card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectedScenarioState = STATES.find(s => s.id === card.dataset.state);
+      grid.querySelectorAll('.state-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      loadScenario();
+    });
+  });
+}
 
-            <div style="margin-top: 3rem;" class="fade-in">
-                <div class="pub-category-title">Selected Invited Talks &amp; Keynotes</div>
-                <div class="pub-item">
-                    <span class="pub-year">2026</span>
-                    <div class="pub-details">
-                        <h4>Sarajevo Security Conference</h4>
-                        <div class="pub-venue">Sarajevo — Forthcoming, September 2026</div>
-                    </div>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2026</span>
-                    <div class="pub-details">
-                        <h4>Closed Virtual Roundtable on Iran and Regional Implications</h4>
-                        <div class="pub-venue">Carnegie Middle East Center</div>
-                    </div>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2025</span>
-                    <div class="pub-details">
-                        <h4>Oxford Intelligence Group Conference</h4>
-                        <div class="pub-venue">University of Oxford</div>
-                    </div>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2025</span>
-                    <div class="pub-details">
-                        <h4>Keynote — Prague Center for Middle East Relations</h4>
-                        <div class="pub-venue">CEVRO University, Prague</div>
-                    </div>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2025</span>
-                    <div class="pub-details">
-                        <h4>Intelligence Studies Summit</h4>
-                        <div class="pub-venue">National Intelligence University, Washington, D.C.</div>
-                    </div>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2025</span>
-                    <div class="pub-details">
-                        <h4>Conceptualising Intelligence in the Global South</h4>
-                        <div class="pub-venue">Centre for Political Practices and Orders, Universität Erfurt, Germany</div>
-                    </div>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-year">2025</span>
-                    <div class="pub-details">
-                        <h4>Gulf Studies Symposium</h4>
-                        <div class="pub-venue">Georgetown University, Washington, D.C.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+function loadScenario() {
+  if (!selectedScenarioState) return;
 
-    <!-- ═══════════ TEACHING ═══════════ -->
-    <section class="teaching-section" id="teaching">
-        <div class="section-inner">
-            <div class="section-header">
-                
-                <h2 class="section-title">Teaching &amp; Simulations</h2>
-                <div class="section-line"></div>
-            </div>
+  const scenario = SCENARIOS[currentScenario];
 
-            <div class="teaching-grid fade-in">
-                <div class="teaching-block">
-                    <h3>Graduate &amp; Undergraduate Courses</h3>
-                    <p>Writing-intensive, methods-forward courses that foreground both theory and practice. Student evaluations consistently rated 4.7–4.9/5, with teaching validated by QAA and FIBAA accreditation reviews.</p>
-                    <ul class="course-list">
-                        <li>Intelligence Studies</li>
-                        <li>AI, Ethics, and International Security</li>
-                        <li>Strategic Theories and Warfare</li>
-                        <li>Armed Non-State Actors</li>
-                        <li>Military History of the Gulf</li>
-                        <li>Criminology and Local Security</li>
-                        <li>Research Methods in International Politics</li>
-                        <li>Comparative Authoritarianism and Digital Governance</li>
-                        <li>Disinformation, Elections, and International Security</li>
-                    </ul>
-                </div>
-                <div class="teaching-block">
-                    <h3>Simulations &amp; Pedagogy</h3>
-                    <p>
-                        I design open-source, browser-based simulations that put students in decision-making roles within complex geopolitical scenarios. My "Digital Deterrence" framework, demonstrated at Georgetown University Qatar, allows students to engage with cyber conflict, escalation dynamics, and intelligence analysis through interactive scenarios.
-                    </p>
-                    <p>
-                        Simulations include UN debates on lethal autonomous weapons, crisis negotiations, intelligence failure analysis, and policy-memo exercises. I also integrate an "AI ledger" approach where students disclose and critically evaluate their use of generative AI — transforming it into a learning object rather than a policing problem.
-                    </p>
-                    <a href="https://muhanadseloom.com/The-Geopolitics-of-Technology-Dr.-Muhanad-Seloom/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;"><div class="sim-badge">View Simulation →</div></a>
+  document.getElementById('stateSelectPrompt').classList.add('hidden');
+  document.getElementById('scenarioContent').classList.remove('hidden');
+  document.getElementById('outcomePanel').classList.add('hidden');
 
-                    <h3 style="margin-top: 2rem;">Executive Education</h3>
-                    <p>
-                        Designing and delivering applied courses for U.S. diplomats at the Department of State, executive training for Qatar's National Cyber Security Agency (cyber diplomacy, AI ethics, international law), and instructing at the Qatar Police Academy and Ministry of Interior.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+  document.getElementById('scenarioMeta').textContent = `Scenario ${currentScenario + 1} of ${SCENARIOS.length} | Playing as ${selectedScenarioState.name}`;
+  document.getElementById('scenarioTag').textContent = scenario.tag;
+  document.getElementById('scenarioTitle').textContent = scenario.title;
+  document.getElementById('scenarioContext').textContent = scenario.context;
 
-    <!-- ═══════════ EXPERIENCE ═══════════ -->
-    <section id="experience">
-        <div class="section-inner">
-            <div class="section-header">
-                
-                <h2 class="section-title">Experience</h2>
-                <div class="section-line"></div>
-            </div>
+  document.getElementById('stakeCapability').textContent = scenario.stakes.capability;
+  document.getElementById('stakeControl').textContent = scenario.stakes.control;
+  document.getElementById('stakeLegitimacy').textContent = scenario.stakes.legitimacy;
 
-            <div class="timeline fade-in">
-                <div class="timeline-item">
-                    <div class="timeline-period">2019 – Present</div>
-                    <h4>Assistant Professor of International Politics of Security &amp; Technology</h4>
-                    <div class="timeline-org"><a href="https://www.dohainstitute.edu.qa" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Doha Institute for Graduate Studies</a>, Qatar</div>
-                    <p>Research and teaching in intelligence, security governance, and emerging technologies. Core member of the design committee for the Executive Master in Security and Strategic Studies (launching September 2026).</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-period">2019 – Present</div>
-                    <h4>Researcher, Strategic Studies Unit</h4>
-                    <div class="timeline-org"><a href="https://www.dohainstitute.org/en" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Arab Center for Research and Policy Studies (ACRPS)</a>, Doha</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-period">2019 – Present</div>
-                    <h4>Honorary Research Fellow</h4>
-                    <div class="timeline-org"><a href="https://www.exeter.ac.uk/research/institutes/ssi/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Strategy and Security Institute, University of Exeter</a>, UK</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-period">2025 – Present</div>
-                    <h4>Lecturer, U.S. Department of State</h4>
-                    <div class="timeline-org"><a href="https://www.state.gov" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Washington, D.C.</a></div>
-                    <p>Designing and delivering applied courses for U.S. diplomats on Iraqi politics, security institutions, and intelligence dynamics.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-period">2025</div>
-                    <h4>Executive Training Instructor</h4>
-                    <div class="timeline-org"><a href="https://www.ncsa.gov.qa" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Qatar National Cyber Security Agency</a></div>
-                    <p>Cyber diplomacy, AI ethics, and international law for mid- and senior-level professionals.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-period">2025 – Present</div>
-                    <h4>Adjunct Professor</h4>
-                    <div class="timeline-org">Police Academy, Qatar</div>
-                    <p>Postgraduate teaching in criminal sciences.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-period">2019 – 2025</div>
-                    <h4>Executive Training Instructor</h4>
-                    <div class="timeline-org"><a href="https://www.moi.gov.qa" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Ministry of Interior, Qatar</a> — Institute of Policewomen</div>
-                    <p>International law, human rights, cybersecurity governance, and intelligence-led policing.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-period">2019</div>
-                    <h4>Security Advisor</h4>
-                    <div class="timeline-org"><a href="https://www.gov.uk/government/organisations/ministry-of-defence" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">UK Ministry of Defence</a>, London</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-period">2016 – 2018</div>
-                    <h4>Associate Lecturer</h4>
-                    <div class="timeline-org"><a href="https://www.exeter.ac.uk" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">University of Exeter</a>, UK</div>
-                    <p>Undergraduate teaching: The History and Political Development of Iraq; Armed Islamist Movements: Jihadism and Beyond.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-period">Previous</div>
-                    <h4>Security Advisor</h4>
-                    <div class="timeline-org"><a href="https://www.state.gov" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">U.S. Department of State, Baghdad</a> &amp; U.S. Army Corps of Engineers, Gulf Region District</div>
-                    <p>Security advisory, interagency coordination, and decision-support analysis during post-conflict operations in Iraq.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  // Update progress bar
+  document.querySelectorAll('.progress-step').forEach((step, i) => {
+    step.classList.remove('completed', 'current');
+    if (i < currentScenario) step.classList.add('completed');
+    if (i === currentScenario) step.classList.add('current');
+  });
 
-    <!-- ═══════════ CONTACT ═══════════ -->
-    <section class="contact-section" id="contact">
-        <div class="contact-inner">
-            <div class="contact-text">
-                <h2>Let's connect</h2>
-                <p>
-                    I welcome enquiries about research collaboration, media commentary, speaking engagements, and graduate supervision in intelligence studies, security, and technology politics.
-                </p>
-                <div class="contact-arabic">د. مهند سلوم</div>
-            </div>
-            <div class="contact-links">
-                <div class="contact-link-item">
-                    <span class="link-label">Email</span>
-                    <a href="/cdn-cgi/l/email-protection#f69b839e97989792b69b9795d895999b"><span class="__cf_email__" data-cfemail="97fae2fff6f9f6f3d7faf6f4b9f4f8fa">[email&#160;protected]</span></a>
-                </div>
-                <div class="contact-link-item">
-                    <span class="link-label">X / Twitter</span>
-                    <a href="https://x.com/MuhanadSeloom" target="_blank" rel="noopener">@MuhanadSeloom</a>
-                </div>
-                <div class="contact-link-item">
-                    <span class="link-label">LinkedIn</span>
-                    <a href="https://www.linkedin.com/in/muhanad-seloom-7868a6353/" target="_blank" rel="noopener">Muhanad Seloom</a>
-                </div>
-                <div class="contact-link-item">
-                    <span class="link-label">Scholar</span>
-                    <a href="https://scholar.google.co.uk/citations?user=f-GBFwIAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar Profile</a>
-                </div>
-                <div class="contact-link-item">
-                    <span class="link-label">Substack</span>
-                    <a href="https://substack.com/@drseloom" target="_blank" rel="noopener">@drseloom</a>
-                </div>
-            </div>
-        </div>
-    </section>
+  // Render options
+  const optionsGrid = document.getElementById('optionsGrid');
+  optionsGrid.innerHTML = scenario.options.map(opt => `
+    <div class="option-card" data-option="${opt.id}">
+      <div class="option-header">
+        <div class="option-label">${opt.label}</div>
+      </div>
+      <div class="option-title">${opt.title}</div>
+      <div class="option-desc">${opt.description}</div>
+      <div class="option-impacts">
+        ${opt.impacts.map(imp => `<span class="impact-chip ${imp.type}">${imp.text}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
 
-    <!-- ═══════════ FOOTER ═══════════ -->
-    <footer>
-        &copy; 2026 Dr. Muhanad Seloom. All rights reserved.
-    </footer>
+  optionsGrid.querySelectorAll('.option-card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectedOption = scenario.options.find(o => o.id === card.dataset.option);
+      optionsGrid.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      document.getElementById('commitDecisionBtn').disabled = false;
+    });
+  });
 
-    <!-- ═══════════ SCRIPTS ═══════════ -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
+  selectedOption = null;
+  document.getElementById('commitDecisionBtn').disabled = true;
+}
 
-        // Fade-in on scroll
-        const fadeEls = document.querySelectorAll('.fade-in');
-        fadeEls.forEach(el => el.classList.add('hidden'));
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.remove('hidden');
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.05 });
+function commitDecision() {
+  if (!selectedOption) return;
 
-        fadeEls.forEach(el => observer.observe(el));
+  const scenario = SCENARIOS[currentScenario];
 
-   
+  // Update cumulative scores
+  cumulativeScores.capability += selectedOption.changes.capability;
+  cumulativeScores.control += selectedOption.changes.control;
+  cumulativeScores.legitimacy += selectedOption.changes.legitimacy;
+
+  // Record decision
+  decisionHistory.push({
+    scenario: scenario.tag,
+    state: selectedScenarioState.name,
+    decision: selectedOption.title,
+    capability: selectedOption.changes.capability,
+    control: selectedOption.changes.control,
+    legitimacy: selectedOption.changes.legitimacy
+  });
+
+  // Show outcome
+  const formatChange = (val) => {
+    const prefix = val > 0 ? '+' : '';
+    return prefix + val;
+  };
+
+  const outcomeCapEl = document.getElementById('outcomeCapability');
+  const outcomeCtrlEl = document.getElementById('outcomeControl');
+  const outcomeLegEl = document.getElementById('outcomeLegitimacy');
+
+  outcomeCapEl.textContent = formatChange(selectedOption.changes.capability);
+  outcomeCapEl.className = 'change ' + (selectedOption.changes.capability >= 0 ? 'positive' : 'negative');
+
+  outcomeCtrlEl.textContent = formatChange(selectedOption.changes.control);
+  outcomeCtrlEl.className = 'change ' + (selectedOption.changes.control >= 0 ? 'positive' : 'negative');
+
+  outcomeLegEl.textContent = formatChange(selectedOption.changes.legitimacy);
+  outcomeLegEl.className = 'change ' + (selectedOption.changes.legitimacy >= 0 ? 'positive' : 'negative');
+
+  document.getElementById('outcomeNarrative').innerHTML = `
+    <p><strong>As ${selectedScenarioState.name}:</strong> ${selectedOption.narrative}</p>
+    <ul>
+      <li><strong>State-specific consideration:</strong> Given ${selectedScenarioState.name}'s profile
+      (Capability: ${selectedScenarioState.capability}, Control: ${selectedScenarioState.control},
+      Legitimacy: ${selectedScenarioState.legitimacy}), this choice ${analyseStateContext()}</li>
+    </ul>
+  `;
+
+  document.getElementById('outcomePanel').classList.remove('hidden');
+  document.getElementById('commitDecisionBtn').disabled = true;
+
+  // Update next button text
+  const nextBtn = document.getElementById('nextScenarioBtn');
+  if (currentScenario >= SCENARIOS.length - 1) {
+    nextBtn.textContent = 'Complete Simulation';
+  } else {
+    nextBtn.textContent = 'Next Scenario';
+  }
+}
+
+function analyseStateContext() {
+  const state = selectedScenarioState;
+  const opt = selectedOption;
+
+  if (opt.changes.capability < 0 && state.capability < 50) {
+    return 'may be particularly costly given limited existing capability.';
+  }
+  if (opt.changes.control > 0 && state.control > 80) {
+    return 'reinforces already strong institutional control mechanisms.';
+  }
+  if (opt.changes.legitimacy < 0 && state.legitimacy < 50) {
+    return 'risks further erosion of already contested legitimacy.';
+  }
+  if (opt.changes.capability > 0 && state.capability > 80) {
+    return 'compounds existing capability advantages.';
+  }
+  return 'reflects the trade-offs inherent in technological governance.';
+}
+
+function nextScenario() {
+  currentScenario++;
+
+  if (currentScenario >= SCENARIOS.length) {
+    showDebrief();
+    return;
+  }
+
+  // Reset for next scenario but keep the same state
+  document.getElementById('scenarioContent').classList.add('hidden');
+  document.getElementById('stateSelectPrompt').classList.remove('hidden');
+
+  // Re-render state select with previous selection
+  renderScenarioStateSelect();
+
+  // Pre-select the previous state
+  setTimeout(() => {
+    const prevStateCard = document.querySelector(`#scenarioStateSelect [data-state="${selectedScenarioState.id}"]`);
+    if (prevStateCard) {
+      prevStateCard.click();
+    }
+  }, 0);
+}
+
+function showDebrief() {
+  switchTab('debrief');
+
+  // Render summary table
+  const tbody = document.getElementById('summaryBody');
+  tbody.innerHTML = decisionHistory.map(d => `
+    <tr>
+      <td>${d.scenario}</td>
+      <td>${d.state}</td>
+      <td>${d.decision}</td>
+      <td style="color: ${d.capability >= 0 ? 'var(--good)' : 'var(--danger)'}">${d.capability >= 0 ? '+' : ''}${d.capability}</td>
+      <td style="color: ${d.control >= 0 ? 'var(--good)' : 'var(--danger)'}">${d.control >= 0 ? '+' : ''}${d.control}</td>
+      <td style="color: ${d.legitimacy >= 0 ? 'var(--good)' : 'var(--danger)'}">${d.legitimacy >= 0 ? '+' : ''}${d.legitimacy}</td>
+    </tr>
+  `).join('');
+
+  // Final position analysis
+  const totalChange = cumulativeScores.capability + cumulativeScores.control + cumulativeScores.legitimacy;
+  let assessment = '';
+
+  if (cumulativeScores.capability > cumulativeScores.control && cumulativeScores.capability > cumulativeScores.legitimacy) {
+    assessment = 'Your decisions prioritised <strong>capability</strong> - building and preserving technical capacity. This approach emphasises technological power as possession.';
+  } else if (cumulativeScores.control > cumulativeScores.capability && cumulativeScores.control > cumulativeScores.legitimacy) {
+    assessment = 'Your decisions prioritised <strong>control</strong> - strengthening governance and institutional frameworks. This approach emphasises technological power as regulatory authority.';
+  } else if (cumulativeScores.legitimacy > cumulativeScores.capability && cumulativeScores.legitimacy > cumulativeScores.control) {
+    assessment = 'Your decisions prioritised <strong>legitimacy</strong> - building normative authority and partnership trust. This approach emphasises technological power as accepted authority.';
+  } else {
+    assessment = 'Your decisions reflect a <strong>balanced approach</strong> across capability, control, and legitimacy - recognising that technological power emerges from their interaction.';
+  }
+
+  document.getElementById('finalPosition').innerHTML = `
+    <strong>Cumulative changes:</strong> Capability ${cumulativeScores.capability >= 0 ? '+' : ''}${cumulativeScores.capability},
+    Control ${cumulativeScores.control >= 0 ? '+' : ''}${cumulativeScores.control},
+    Legitimacy ${cumulativeScores.legitimacy >= 0 ? '+' : ''}${cumulativeScores.legitimacy}<br><br>
+    ${assessment}
+  `;
+
+  document.getElementById('debriefMeta').textContent = `${decisionHistory.length} decisions completed`;
+}
+
+function downloadResults() {
+  const headers = ['Scenario', 'State', 'Decision', 'Capability Change', 'Control Change', 'Legitimacy Change'];
+  const rows = decisionHistory.map(d => [d.scenario, d.state, d.decision, d.capability, d.control, d.legitimacy]);
+
+  const totals = ['TOTAL', '', '', cumulativeScores.capability, cumulativeScores.control, cumulativeScores.legitimacy];
+
+  const csv = [headers, ...rows, totals].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'geopolitics_tech_simulation_results.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function restart() {
+  currentScenario = 0;
+  selectedOption = null;
+  selectedScenarioState = null;
+  decisionHistory = [];
+  cumulativeScores = { capability: 0, control: 0, legitimacy: 0 };
+
+  document.getElementById('scenarioContent').classList.add('hidden');
+  document.getElementById('stateSelectPrompt').classList.remove('hidden');
+  document.getElementById('comparisonTable').classList.add('hidden');
+  document.getElementById('stateDetail').classList.add('hidden');
+
+  renderScenarioStateSelect();
+
+  switchTab('intro');
+}
+
+// ============ EVENT LISTENERS ============
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+});
+
+document.getElementById('startBtn').addEventListener('click', () => switchTab('compare'));
+document.getElementById('toScenarioBtn').addEventListener('click', () => switchTab('scenario'));
+document.getElementById('compareAllBtn').addEventListener('click', renderComparisonTable);
+document.getElementById('commitDecisionBtn').addEventListener('click', commitDecision);
+document.getElementById('nextScenarioBtn').addEventListener('click', nextScenario);
+document.getElementById('downloadResultsBtn').addEventListener('click', downloadResults);
+document.getElementById('restartBtn').addEventListener('click', restart);
+
+// ============ INIT ============
+
+renderStateCards();
+renderScenarioStateSelect();
+</script>
+</body>
+</html>
